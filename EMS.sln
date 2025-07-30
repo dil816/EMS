@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Api", "EMS.Api\EMS.Api.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Api", "EMS.Modules.Events.Api\EMS.Modules.Events.Api.csproj", "{3AA7E142-5012-4B67-8EE3-DEE4E632F073}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F606E326-9A98-49FF-9B00-6DE475DFC76A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{3AA7E142-5012-4B67-8EE3-DEE4E632F073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA7E142-5012-4B67-8EE3-DEE4E632F073}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA7E142-5012-4B67-8EE3-DEE4E632F073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
