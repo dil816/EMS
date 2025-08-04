@@ -4,6 +4,7 @@
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
 	</ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj" />
   </ItemGroup>
 </Project>
