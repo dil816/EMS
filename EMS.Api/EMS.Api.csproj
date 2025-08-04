@@ -18,8 +18,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\EMS.Modules.Events.Api\EMS.Modules.Events.Api.csproj" />
-  </ItemGroup>
-
 </Project>
