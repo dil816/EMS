@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Events.Api.Database;
+﻿namespace EMS.Modules.Events.Infrastructure.Database;
 
 internal static class Schema
 {

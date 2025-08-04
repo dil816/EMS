@@ -1,33 +1,32 @@
-﻿namespace EMS.Modules.Events.Application.Events;
-public static class CreateEvent
-{
-    public static void MapEndpoint(IEndpointRouteBuilder app)
-    {
-        app.MapPost("events", async (Request request, EventsDbContext context) =>
-        {
-            
-            var @event = new Event
-            {
-                Id = Guid.NewGuid(),
-                Title = request.Title,
-                Description = request.Description,
-                Location = request.Location,
-                StartsAtUtc = request.StartsAtUtc,
-                EndsAtUtc = request.EndsAtUtc
-            };
-            context.Events.Add(@event);
-            await context.SaveChangesAsync();
-            return Results.Ok(@event.Id);
-        })
-        .WithTags(Tags.Events);
-    }
+﻿using EMS.Modules.Events.Application.Abstractions.Data;
+using EMS.Modules.Events.Domain.Events;
+using MediatR;
 
-    internal sealed class Request
+namespace EMS.Modules.Events.Application.Events;
+
+public sealed record CreateEventCommand(
+    string Title,
+    string Description,
+    string Location,
+    DateTime StartsAtUtc,
+    DateTime? EndsAtUtc) : IRequest<Guid>;
+
+internal sealed class CreateEventCommandHandler(IEventRepository eventRepository, IUnitOfWork unitOfWork)
+    : IRequestHandler<CreateEventCommand, Guid>
+{
+    public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public DateTime StartsAtUtc { get; set; }
-        public DateTime? EndsAtUtc { get; set; }
+        var @event = new Event
+        {
+            Id = Guid.NewGuid(),
+            Title = request.Title,
+            Description = request.Description,
+            Location = request.Location,
+            StartsAtUtc = request.StartsAtUtc,
+            EndsAtUtc = request.EndsAtUtc
+        };
+        eventRepository.Insert(@event);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+        return @event.Id;
     }
 }

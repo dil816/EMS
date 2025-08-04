@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace EMS.Modules.Events.Api.Database.Migrations
+namespace EMS.Modules.Events.Infrastructure.Database.Migrations
 {
     /// <inheritdoc />
     public partial class Create_Database : Migration

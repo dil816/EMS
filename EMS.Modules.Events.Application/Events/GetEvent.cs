@@ -1,10 +1,14 @@
 ﻿using EMS.Modules.Events.Api.Database;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
-namespace EMS.Modules.Events.Api.Events;
+namespace EMS.Modules.Events.Application.Events;
+
+public sealed record GetEventQuery(Guid EventId) : IRequest<EventResponse>;
+
 public static class GetEvent
 {
     public static void MapEndpoint(IEndpointRouteBuilder app)
