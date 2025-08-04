@@ -1,34 +1,35 @@
-﻿using EMS.Modules.Events.Api.Database;
+﻿using System.Data.Common;
+using Dapper;
+using EMS.Modules.Events.Application.Abstractions.Data;
 using MediatR;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Modules.Events.Application.Events;
 
-public sealed record GetEventQuery(Guid EventId) : IRequest<EventResponse>;
+public sealed record GetEventQuery(Guid EventId) : IRequest<EventResponse?>;
 
-public static class GetEvent
+internal sealed class GetEventQueryHandler(IDbConnectionFactory dbConnectionFactory)
+    : IRequestHandler<GetEventQuery, EventResponse?>
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public async Task<EventResponse?> Handle(GetEventQuery request, CancellationToken cancellationToken)
     {
-        app.MapGet("event/{id}", async (Guid id, EventsDbContext context) =>
-        {
-            EventResponse? @event = await context.Events
-                .Where(e => e.Id == id)
-                .Select(e => new EventResponse
-                (
-                    e.Id,
-                    e.Title,
-                    e.Description,
-                    e.Location,
-                    e.StartsAtUtc,
-                    e.EndsAtUtc
-                ))
-                .SingleOrDefaultAsync();
-            return @event is null ? Results.NotFound() : Results.Ok(@event);
-        })
-        .WithTags(Tags.Events);
+        await using DbConnection connection = await dbConnectionFactory.OpenConnectionAsync();
+
+        const string sql =
+            $"""
+             SELECT
+                 id AS {nameof(EventResponse.Id)},
+                 title AS {nameof(EventResponse.Title)},
+                 description AS {nameof(EventResponse.Description)},
+                 location AS {nameof(EventResponse.Location)},
+                 starts_at_utc AS {nameof(EventResponse.StartsAtUtc)},
+                 ends_at_utc As {nameof(EventResponse.EndsAtUtc)}
+             FROM events.events
+             WHERE id = @EventId;
+             """;
+
+        EventResponse? @event = await connection.QuerySingleOrDefaultAsync(sql, request);
+        return @event;
     }
 }
+
+
