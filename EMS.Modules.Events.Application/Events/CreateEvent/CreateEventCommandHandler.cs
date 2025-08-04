@@ -2,14 +2,7 @@
 using EMS.Modules.Events.Domain.Events;
 using MediatR;
 
-namespace EMS.Modules.Events.Application.Events;
-
-public sealed record CreateEventCommand(
-    string Title,
-    string Description,
-    string Location,
-    DateTime StartsAtUtc,
-    DateTime? EndsAtUtc) : IRequest<Guid>;
+namespace EMS.Modules.Events.Application.Events.CreateEvent;
 
 internal sealed class CreateEventCommandHandler(IEventRepository eventRepository, IUnitOfWork unitOfWork)
     : IRequestHandler<CreateEventCommand, Guid>

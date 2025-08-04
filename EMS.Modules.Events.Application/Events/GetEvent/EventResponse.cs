@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Events.Application.Events;
+﻿namespace EMS.Modules.Events.Application.Events.GetEvent;
 
 public sealed record EventResponse(
     Guid Id,
