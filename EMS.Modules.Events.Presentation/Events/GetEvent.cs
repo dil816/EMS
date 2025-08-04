@@ -1,5 +1,4 @@
-﻿using EMS.Modules.Events.Api.Events;
-using EMS.Modules.Events.Application.Events;
+﻿using EMS.Modules.Events.Application.Events;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

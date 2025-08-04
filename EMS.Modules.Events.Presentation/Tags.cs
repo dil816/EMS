@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Events.Api.Events;
+﻿namespace EMS.Modules.Events.Presentation;
 
 internal static class Tags
 {
