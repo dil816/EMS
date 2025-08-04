@@ -4,6 +4,7 @@ using EMS.Modules.Events.Infrastructure.Data;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
 using EMS.Modules.Events.Presentation.Events;
+using FluentValidation;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -28,6 +29,8 @@ public static class EventsModule
         {
             config.RegisterServicesFromAssembly(Application.AssemblyReference.Assembly);
         });
+
+        services.AddValidatorsFromAssembly(Application.AssemblyReference.Assembly, includeInternalTypes: true);
 
         services.AddInfrastructure(configuration);
 
