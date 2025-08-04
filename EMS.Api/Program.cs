@@ -1,5 +1,5 @@
 using EMS.Api.Extensions;
-using EMS.Modules.Events.Api;
+using EMS.Modules.Events.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
