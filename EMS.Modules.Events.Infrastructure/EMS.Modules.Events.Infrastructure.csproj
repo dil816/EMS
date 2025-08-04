@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<ItemGroup>
+		<PackageReference Include="EFCore.NamingConventions" Version="9.0.0" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj" />
+  </ItemGroup>
+</Project>

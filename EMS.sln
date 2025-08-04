@@ -23,13 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Api", "E
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F606E326-9A98-49FF-9B00-6DE475DFC76A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Domain", "..\EMS.Modules.Events.Domain\EMS.Modules.Events.Domain.csproj", "{2148125A-817B-473E-9CBB-C9BE87D196D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Domain", "EMS.Modules.Events.Domain\EMS.Modules.Events.Domain.csproj", "{2148125A-817B-473E-9CBB-C9BE87D196D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Infrastructure", "..\EMS.Modules.Events.Infrastructure\EMS.Modules.Events.Infrastructure.csproj", "{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Infrastructure", "EMS.Modules.Events.Infrastructure\EMS.Modules.Events.Infrastructure.csproj", "{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Presentation", "..\EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj", "{429432BE-8F69-41C4-A834-E47096C173A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Presentation", "EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj", "{429432BE-8F69-41C4-A834-E47096C173A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Application", "..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj", "{B21B1425-B237-4956-8B0C-FCA57B0E7D71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Application", "EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj", "{B21B1425-B237-4956-8B0C-FCA57B0E7D71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
