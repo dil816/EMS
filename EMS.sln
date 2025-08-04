@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4929B0D8-A7A6-4259-B0C7-5E383788A586}"
 	ProjectSection(SolutionItems) = preProject
@@ -23,6 +23,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Api", "E
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F606E326-9A98-49FF-9B00-6DE475DFC76A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Domain", "..\EMS.Modules.Events.Domain\EMS.Modules.Events.Domain.csproj", "{2148125A-817B-473E-9CBB-C9BE87D196D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Infrastructure", "..\EMS.Modules.Events.Infrastructure\EMS.Modules.Events.Infrastructure.csproj", "{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Presentation", "..\EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj", "{429432BE-8F69-41C4-A834-E47096C173A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Application", "..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj", "{B21B1425-B237-4956-8B0C-FCA57B0E7D71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +49,22 @@ Global
 		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F606E326-9A98-49FF-9B00-6DE475DFC76A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2148125A-817B-473E-9CBB-C9BE87D196D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2148125A-817B-473E-9CBB-C9BE87D196D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2148125A-817B-473E-9CBB-C9BE87D196D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2148125A-817B-473E-9CBB-C9BE87D196D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429432BE-8F69-41C4-A834-E47096C173A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429432BE-8F69-41C4-A834-E47096C173A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429432BE-8F69-41C4-A834-E47096C173A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429432BE-8F69-41C4-A834-E47096C173A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B21B1425-B237-4956-8B0C-FCA57B0E7D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B21B1425-B237-4956-8B0C-FCA57B0E7D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B21B1425-B237-4956-8B0C-FCA57B0E7D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B21B1425-B237-4956-8B0C-FCA57B0E7D71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,5 +75,9 @@ Global
 		{AA39295F-FF8C-4571-86FD-B0475186AB56} = {C53FCC9F-5949-4CEB-A5FF-6458A230085F}
 		{0781E2FA-1E41-4E5B-B81A-77108F8880D9} = {2B761148-B7F9-436D-8759-922F90929E39}
 		{3AA7E142-5012-4B67-8EE3-DEE4E632F073} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
+		{2148125A-817B-473E-9CBB-C9BE87D196D3} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
+		{FCC6E1EB-F9CB-424A-BB60-9FA0F7A7045D} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
+		{429432BE-8F69-41C4-A834-E47096C173A6} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
+		{B21B1425-B237-4956-8B0C-FCA57B0E7D71} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
 	EndGlobalSection
 EndGlobal
