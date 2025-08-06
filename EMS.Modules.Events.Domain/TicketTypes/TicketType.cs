@@ -44,13 +44,13 @@ public sealed class TicketType : Entity
 
     public void UpdatePrice(decimal price)
     {
-        if(Price == price)
+        if (Price == price)
         {
             return;
         }
 
         Price = price;
 
-        Raise(new TicketTypePriceChangedDomainEvent(Id, price));
+        Raise(new TicketTypePriceChangedDomainEvent(Id, Price));
     }
 }
