@@ -1,4 +1,5 @@
 ﻿using EMS.Modules.Events.Domain.Abstractions;
+using EMS.Modules.Events.Domain.Categories;
 
 namespace EMS.Modules.Events.Domain.Events;
 
@@ -7,6 +8,8 @@ public sealed class Event : Entity
     private Event() { }
 
     public Guid Id { get; private set; }
+
+    public Guid CategoryId { get; private set; }
 
     public string Title { get; private set; }
 
@@ -20,21 +23,29 @@ public sealed class Event : Entity
 
     public EventStatus Status { get; private set; }
 
-    public static Event Create(
+    public static Result<Event> Create(
+        Category category,
         string title,
         string description,
         string location,
         DateTime startsAtUtc,
         DateTime? endsAtUtc)
     {
+        if (endsAtUtc.HasValue && endsAtUtc < startsAtUtc)
+        {
+            return Result.Failure<Event>(EventErrors.EndDatePrecedesStartDate);
+        }
+
         var @event = new Event
         {
             Id = Guid.NewGuid(),
+            CategoryId = category.Id,
             Title = title,
             Description = description,
             Location = location,
             StartsAtUtc = startsAtUtc,
             EndsAtUtc = endsAtUtc,
+            Status = EventStatus.Draft
         };
 
         @event.Raise(new EventCreatedDomainEvent(@event.Id));
