@@ -1,19 +1,44 @@
-﻿namespace EMS.Modules.Events.Domain.Events;
+﻿using EMS.Modules.Events.Domain.Abstractions;
 
-public sealed class Event
+namespace EMS.Modules.Events.Domain.Events;
+
+public sealed class Event : Entity
 {
-    public Guid Id { get; set; }
+    private Event() { }
 
-    public string Title { get; set; }
+    public Guid Id { get; private set; }
 
-    public string Description { get; set; }
+    public string Title { get; private set; }
 
-    public string Location { get; set; }
+    public string Description { get; private set; }
 
-    public DateTime StartsAtUtc { get; set; }
+    public string Location { get; private set; }
 
-    public DateTime? EndsAtUtc { get; set; }
+    public DateTime StartsAtUtc { get; private set; }
 
-    public EventStatus Status { get; set; }
+    public DateTime? EndsAtUtc { get; private set; }
+
+    public EventStatus Status { get; private set; }
+
+    public static Event Create(
+        string title,
+        string description,
+        string location,
+        DateTime startsAtUtc,
+        DateTime? endsAtUtc)
+    {
+        var @event = new Event
+        {
+            Id = Guid.NewGuid(),
+            Title = title,
+            Description = description,
+            Location = location,
+            StartsAtUtc = startsAtUtc,
+            EndsAtUtc = endsAtUtc,
+        };
+
+        @event.Raise(new EventCreatedDomainEvent(@event.Id));
+
+        return @event;
+    }
 }
-
