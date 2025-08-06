@@ -2,14 +2,15 @@
 using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Application.Abstractions.Messaging;
 using EMS.Modules.Events.Domain.Abstractions;
+using EMS.Modules.Events.Domain.Categories;
 using EMS.Modules.Events.Domain.Events;
-using MediatR;
 
 namespace EMS.Modules.Events.Application.Events.CreateEvent;
 
 internal sealed class CreateEventCommandHandler(
     IDateTimeProvider dateTimeProvider,
     IEventRepository eventRepository,
+    ICategoryRepository categoryRepository,
     IUnitOfWork unitOfWork)
     : ICommandHandler<CreateEventCommand, Guid>
 {
@@ -27,17 +28,23 @@ internal sealed class CreateEventCommandHandler(
             return Result.Failure<Guid>(CategoryErrors.NotFound(request.CategoryId));
         }
 
-        var @event = new Event
+        Result<Event> result = Event.Create(
+            category,
+            request.Title,
+            request.Description,
+            request.Location,
+            request.StartsAtUtc,
+            request.EndsAtUtc);
+
+        if (result.IsFailure)
         {
-            Id = Guid.NewGuid(),
-            Title = request.Title,
-            Description = request.Description,
-            Location = request.Location,
-            StartsAtUtc = request.StartsAtUtc,
-            EndsAtUtc = request.EndsAtUtc
-        };
-        eventRepository.Insert(@event);
+            return Result.Failure<Guid>(result.Error);
+        }
+
+        eventRepository.Insert(result.Value);
+
         await unitOfWork.SaveChangesAsync(cancellationToken);
-        return @event.Id;
+
+        return result.Value.Id;
     }
 }

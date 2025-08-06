@@ -12,6 +12,6 @@ internal sealed class CreateEventCommandValidator : AbstractValidator<CreateEven
         RuleFor(c => c.StartsAtUtc).NotEmpty();
         RuleFor(c => c.EndsAtUtc)
             .Must((cmd, endsAtUtc) => endsAtUtc > cmd.StartsAtUtc)
-            .When(c => c.EndsAtUtc.HasValue)
+            .When(c => c.EndsAtUtc.HasValue);
     }
 }
