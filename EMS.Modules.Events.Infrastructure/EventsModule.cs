@@ -1,10 +1,14 @@
 ﻿using EMS.Modules.Events.Application.Abstractions.Clock;
 using EMS.Modules.Events.Application.Abstractions.Data;
+using EMS.Modules.Events.Domain.Categories;
 using EMS.Modules.Events.Domain.Events;
+using EMS.Modules.Events.Domain.TicketTypes;
+using EMS.Modules.Events.Infrastructure.Categories;
 using EMS.Modules.Events.Infrastructure.Clock;
 using EMS.Modules.Events.Infrastructure.Data;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
+using EMS.Modules.Events.Infrastructure.TicketTypes;
 using EMS.Modules.Events.Presentation.Events;
 using FluentValidation;
 using Microsoft.AspNetCore.Routing;
@@ -59,6 +63,8 @@ public static class EventsModule
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<IEventRepository, EventRepository>();
+        services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventsDbContext>());
     }
