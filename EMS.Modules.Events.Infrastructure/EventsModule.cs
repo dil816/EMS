@@ -60,7 +60,8 @@ public static class EventsModule
                     databaseConnectionString,
                     npgSqlOptions => npgSqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schema.Events))
-                .UseSnakeCaseNamingConvention());
+                .UseSnakeCaseNamingConvention()
+                .AddInterceptors());
 
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
