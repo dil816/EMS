@@ -1,5 +1,7 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Data;
+﻿using EMS.Modules.Events.Application.Abstractions.Clock;
+using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Events;
+using EMS.Modules.Events.Infrastructure.Clock;
 using EMS.Modules.Events.Infrastructure.Data;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
@@ -45,6 +47,8 @@ public static class EventsModule
         services.TryAddSingleton(npgSqlDataSource);
 
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+
+        services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         services.AddDbContext<EventsDbContext>(options =>
             options
