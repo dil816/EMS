@@ -6,7 +6,7 @@ using EMS.Modules.Events.Application.Categories.GetCategory;
 using EMS.Modules.Events.Domain.Abstractions;
 
 namespace EMS.Modules.Events.Application.Categories.GetCategories;
-internal class GetCategoriesQueryHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class GetCategoriesQueryHandler(IDbConnectionFactory dbConnectionFactory)
     : IQueryHandler<GetCategoriesQuery, IReadOnlyCollection<CategoryResponse>>
 {
     public async Task<Result<IReadOnlyCollection<CategoryResponse>>> Handle(

@@ -5,7 +5,7 @@ using EMS.Modules.Events.Domain.Events;
 using EMS.Modules.Events.Domain.TicketTypes;
 
 namespace EMS.Modules.Events.Application.TicketTypes.CreateTicketType;
-internal class CreateTicketTypeCommandHandler(
+internal sealed class CreateTicketTypeCommandHandler(
     IEventRepository eventRepository,
     ITicketTypeRepository ticketTypeRepository,
     IUnitOfWork unitOfWork)
