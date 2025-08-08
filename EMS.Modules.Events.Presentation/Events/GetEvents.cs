@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Application.Events.GetEvent;
+﻿using EMS.Modules.Events.Application.Events.GetEvents;
 using EMS.Modules.Events.Domain.Abstractions;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal static class GetEvent
+internal static class GetEvents
 {
     public static void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("events/{id}", async (Guid id, ISender sender) =>
+        app.MapGet("events", async (ISender sender) =>
         {
-            Result<EventResponse> result = await sender.Send(new GetEventQuery(id));
+            Result<IReadOnlyCollection<EventResponse>> result = await sender.Send(new GetEventsQuery());
 
             return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
         })
