@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Api.Database;
+﻿using EMS.Modules.Events.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Api.Extensions;
