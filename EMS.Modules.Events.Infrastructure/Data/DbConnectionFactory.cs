@@ -3,7 +3,7 @@ using EMS.Modules.Events.Application.Abstractions.Data;
 using Npgsql;
 
 namespace EMS.Modules.Events.Infrastructure.Data;
-internal class DbConnectionFactory(NpgsqlDataSource dataSource) : IDbConnectionFactory
+internal sealed class DbConnectionFactory(NpgsqlDataSource dataSource) : IDbConnectionFactory
 {
     public async ValueTask<DbConnection> OpenConnectionAsync()
     {
