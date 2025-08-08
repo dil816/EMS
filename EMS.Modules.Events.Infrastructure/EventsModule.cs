@@ -9,7 +9,9 @@ using EMS.Modules.Events.Infrastructure.Data;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
 using EMS.Modules.Events.Infrastructure.TicketTypes;
+using EMS.Modules.Events.Presentation.Categories;
 using EMS.Modules.Events.Presentation.Events;
+using EMS.Modules.Events.Presentation.TicketTypes;
 using FluentValidation;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,8 @@ public static class EventsModule
 {
     public static void MapEndPoints(IEndpointRouteBuilder app)
     {
+        TicketTypeEndpoints.MapEndpoints(app);
+        CategoryEndpoints.MapEndpoints(app);
         EventEndpoints.MapEndpoints(app);
     }
 
