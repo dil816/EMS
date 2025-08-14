@@ -20,3 +20,13 @@ services:
       - ./.containers/db:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  ems.seq:
+    image: datalust/seq:latest
+    container_name: EMS.Seq
+    environment:
+      - ACCEPT_EULA=Y
+      - SEQ_FIRSTRUN_ADMINPASSWORD=1234
+    ports:
+      - 5341:5341
+      - 8081:80

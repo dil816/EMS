@@ -2,9 +2,11 @@ using EMS.Api.Extensions;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
 using EMS.Modules.Events.Infrastructure;
+using Serilog;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -27,5 +29,7 @@ if (app.Environment.IsDevelopment())
 }
 
 EventsModule.MapEndPoints(app);
+
+app.UseSerilogRequestLogging();
 
 app.Run();
