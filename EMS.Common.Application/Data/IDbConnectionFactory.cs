@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace EMS.Modules.Events.Application.Abstractions.Data;
+namespace EMS.Common.Application.Data;
 public interface IDbConnectionFactory
 {
     ValueTask<DbConnection> OpenConnectionAsync();

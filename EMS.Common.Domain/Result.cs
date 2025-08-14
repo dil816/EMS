@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace EMS.Modules.Events.Domain.Abstractions;
+namespace EMS.Common.Domain;
 public class Result
 {
     public Result(bool isSuccess, Error error)

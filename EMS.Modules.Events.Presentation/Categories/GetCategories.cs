@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Application.Categories.GetCategories;
+﻿using EMS.Common.Domain;
+using EMS.Modules.Events.Application.Categories.GetCategories;
 using EMS.Modules.Events.Application.Categories.GetCategory;
-using EMS.Modules.Events.Domain.Abstractions;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

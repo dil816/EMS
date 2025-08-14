@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
 
-namespace EMS.Modules.Events.Application.Abstractions.Exceptions;
+namespace EMS.Common.Application.Exceptions;
 public sealed class EmsException : Exception
 {
     public EmsException(string requestName, Error? error = default, Exception? innerException = default)

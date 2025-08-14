@@ -1,8 +1,8 @@
 ﻿using System.Data.Common;
 using Dapper;
-using EMS.Modules.Events.Application.Abstractions.Data;
-using EMS.Modules.Events.Application.Abstractions.Messaging;
-using EMS.Modules.Events.Domain.Abstractions;
+using EMS.Common.Application.Data;
+using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
 using EMS.Modules.Events.Domain.TicketTypes;
 
 namespace EMS.Modules.Events.Application.TicketTypes.GetTicketType;

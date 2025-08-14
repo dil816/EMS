@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Data;
-using EMS.Modules.Events.Application.Abstractions.Messaging;
-using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
+using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Categories;
 
 namespace EMS.Modules.Events.Application.Categories.ArchiveCategory;

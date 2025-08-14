@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Clock;
+﻿using EMS.Common.Application.Clock;
 
-namespace EMS.Modules.Events.Infrastructure.Clock;
+namespace EMS.Common.Infrastructure.Clock;
 internal sealed class DateTimeProvider : IDateTimeProvider
 {
     public DateTime UtcNow => DateTime.UtcNow;

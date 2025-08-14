@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Messaging;
+﻿using EMS.Common.Application.Messaging;
 
 namespace EMS.Modules.Events.Application.TicketTypes.CreateTicketType;
 public sealed record CreateTicketTypeCommand(

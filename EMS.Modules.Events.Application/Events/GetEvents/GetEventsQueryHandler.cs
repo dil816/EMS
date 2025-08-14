@@ -1,8 +1,8 @@
 ﻿using System.Data.Common;
 using Dapper;
-using EMS.Modules.Events.Application.Abstractions.Data;
-using EMS.Modules.Events.Application.Abstractions.Messaging;
-using EMS.Modules.Events.Domain.Abstractions;
+using EMS.Common.Application.Data;
+using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
 
 namespace EMS.Modules.Events.Application.Events.GetEvents;
 internal sealed class GetEventsQueryHandler(IDbConnectionFactory dbConnectionFactory)

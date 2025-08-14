@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Data;
-using EMS.Modules.Events.Application.Abstractions.Messaging;
-using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
+using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Events;
 using EMS.Modules.Events.Domain.TicketTypes;
 

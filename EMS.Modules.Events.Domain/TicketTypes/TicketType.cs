@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
 using EMS.Modules.Events.Domain.Events;
 
 namespace EMS.Modules.Events.Domain.TicketTypes;

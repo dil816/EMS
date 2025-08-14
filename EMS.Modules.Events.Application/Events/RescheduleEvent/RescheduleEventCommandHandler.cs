@@ -1,7 +1,7 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Clock;
+﻿using EMS.Common.Application.Clock;
+using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
 using EMS.Modules.Events.Application.Abstractions.Data;
-using EMS.Modules.Events.Application.Abstractions.Messaging;
-using EMS.Modules.Events.Domain.Abstractions;
 using EMS.Modules.Events.Domain.Events;
 
 namespace EMS.Modules.Events.Application.Events.RescheduleEvent;

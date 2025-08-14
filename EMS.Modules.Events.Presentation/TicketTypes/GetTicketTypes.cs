@@ -1,6 +1,6 @@
-﻿using EMS.Modules.Events.Application.TicketTypes.GetTicketType;
+﻿using EMS.Common.Domain;
+using EMS.Modules.Events.Application.TicketTypes.GetTicketType;
 using EMS.Modules.Events.Application.TicketTypes.GetTicketTypes;
-using EMS.Modules.Events.Domain.Abstractions;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

@@ -1,8 +1,8 @@
 ﻿using System.Data.Common;
-using EMS.Modules.Events.Application.Abstractions.Data;
+using EMS.Common.Application.Data;
 using Npgsql;
 
-namespace EMS.Modules.Events.Infrastructure.Data;
+namespace EMS.Common.Infrastructure.Data;
 internal sealed class DbConnectionFactory(NpgsqlDataSource dataSource) : IDbConnectionFactory
 {
     public async ValueTask<DbConnection> OpenConnectionAsync()

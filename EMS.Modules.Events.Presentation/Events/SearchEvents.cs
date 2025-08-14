@@ -1,5 +1,5 @@
-﻿using EMS.Modules.Events.Application.Events.SearchEvents;
-using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
+using EMS.Modules.Events.Application.Events.SearchEvents;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

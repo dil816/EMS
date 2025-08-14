@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
 using Microsoft.AspNetCore.Http;
 
 namespace EMS.Modules.Events.Presentation.ApiResults;

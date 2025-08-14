@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Events.Domain.Abstractions;
+﻿namespace EMS.Common.Domain;
 
 public sealed record ValidationError : Error
 {

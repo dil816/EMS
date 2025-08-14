@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Events.Domain.Abstractions;
+﻿namespace EMS.Common.Domain;
 public record Error
 {
     public static readonly Error None = new(string.Empty, string.Empty, ErrorType.Failure);

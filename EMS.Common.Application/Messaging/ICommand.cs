@@ -1,7 +1,7 @@
-﻿using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
 using MediatR;
 
-namespace EMS.Modules.Events.Application.Abstractions.Messaging;
+namespace EMS.Common.Application.Messaging;
 
 public interface ICommand : IRequest<Result>, IBaseCommand;
 public interface ICommand<TResponse> : IRequest<Result<TResponse>>, IBaseCommand;

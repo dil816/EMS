@@ -1,4 +1,4 @@
-﻿using EMS.Modules.Events.Domain.Abstractions;
+﻿using EMS.Common.Domain;
 
 namespace EMS.Modules.Events.Domain.Categories;
 public sealed class CategoryCreatedDomainEvent(Guid CategoryId) : DomainEvent
