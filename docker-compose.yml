@@ -30,3 +30,10 @@ services:
     ports:
       - 5341:5341
       - 8081:80
+
+  ems.redis:
+    image: redis:latest
+    container_name: EMS.Redis
+    restart: always
+    ports:
+      - 6379:6379
