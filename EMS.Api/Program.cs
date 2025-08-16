@@ -3,6 +3,8 @@ using EMS.Api.Middleware;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
 using EMS.Modules.Events.Infrastructure;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -17,10 +19,17 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddApplication([EMS.Modules.Events.Application.AssemblyReference.Assembly]);
+
+string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
+string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
+
 builder.Services.AddInfrastructure(
-    builder.Configuration.GetConnectionString("Database")!,
-    builder.Configuration.GetConnectionString("Cache")!);
+    databaseConnectionString,
+    redisConnectionString);
 builder.Configuration.AddModuleConfiguration(["events"]);
+builder.Services.AddHealthChecks()
+    .AddNpgSql(databaseConnectionString)
+    .AddRedis(redisConnectionString);
 builder.Services.AddEventsModule(builder.Configuration);
 
 WebApplication app = builder.Build();
@@ -34,6 +43,11 @@ if (app.Environment.IsDevelopment())
 }
 
 EventsModule.MapEndPoints(app);
+
+app.MapHealthChecks("health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.UseSerilogRequestLogging();
 
