@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal class CancelEvent : IEndpoint
+internal sealed class CancelEvent : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {

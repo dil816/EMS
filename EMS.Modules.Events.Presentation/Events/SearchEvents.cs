@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal class SearchEvents : IEndpoint
+internal sealed class SearchEvents : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
