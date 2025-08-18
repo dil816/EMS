@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<FrameworkReference Include="Microsoft.AspNetCore.App" />
-	</ItemGroup>
-	<ItemGroup>
+	  <ProjectReference Include="..\EMS.Common.Presentation\EMS.Common.Presentation.csproj" />
 	  <ProjectReference Include="..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj" />
 	</ItemGroup>
 </Project>

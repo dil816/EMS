@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Common.Domain", "EMS.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Common.Infrastructure", "EMS.Common.Infrastructure\EMS.Common.Infrastructure.csproj", "{D9E0086B-F0EC-45E6-8EAD-6C313A343AB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Common.Presentation", "EMS.Common.Presentation\EMS.Common.Presentation.csproj", "{70E500DB-260D-4ADF-8867-F061116DA6B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{D9E0086B-F0EC-45E6-8EAD-6C313A343AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9E0086B-F0EC-45E6-8EAD-6C313A343AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9E0086B-F0EC-45E6-8EAD-6C313A343AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E500DB-260D-4ADF-8867-F061116DA6B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E500DB-260D-4ADF-8867-F061116DA6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E500DB-260D-4ADF-8867-F061116DA6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E500DB-260D-4ADF-8867-F061116DA6B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +102,7 @@ Global
 		{6B98CC6E-E60E-4A8A-A98D-7C8E1893E3BD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C1753792-6DB6-4097-AF79-76413305187E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{D9E0086B-F0EC-45E6-8EAD-6C313A343AB7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{70E500DB-260D-4ADF-8867-F061116DA6B6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
