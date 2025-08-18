@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.TicketTypes.CreateTicketType;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -8,9 +9,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.TicketTypes;
 
-internal static class CreateTicketType
+internal class CreateTicketType : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("ticket-types", async (Request request, ISender sender) =>
         {

@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Events.CancelEvent;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -7,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal static class CancelEvent
+internal class CancelEvent : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapDelete("events/{id}/cancel", async (Guid id, ISender sender) =>
         {

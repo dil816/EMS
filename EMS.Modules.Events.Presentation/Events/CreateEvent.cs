@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Events.CreateEvent;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -7,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal static class CreateEvent
+internal class CreateEvent : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPost("events", async (Request request, ISender sender) =>
         {

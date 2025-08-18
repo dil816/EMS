@@ -2,6 +2,7 @@ using EMS.Api.Extensions;
 using EMS.Api.Middleware;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -42,7 +43,7 @@ if (app.Environment.IsDevelopment())
     app.ApplyMigrations();
 }
 
-EventsModule.MapEndPoints(app);
+app.MapEndpoints();
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {

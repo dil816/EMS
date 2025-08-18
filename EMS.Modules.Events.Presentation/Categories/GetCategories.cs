@@ -1,5 +1,6 @@
 ﻿using EMS.Common.Application.Caching;
 using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Categories.GetCategories;
 using EMS.Modules.Events.Application.Categories.GetCategory;
 using EMS.Modules.Events.Presentation.ApiResults;
@@ -10,9 +11,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Categories;
 
-internal static class GetCategories
+internal class GetCategories : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapGet("categories", async (ISender sender, ICacheService cacheService) =>
         {

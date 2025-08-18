@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Events.PublishEvent;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -7,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Events;
-internal static class PublishEvent
+internal class PublishEvent : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPut("events/{id}/publish", async (Guid id, ISender sender) =>
         {

@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Categories.UpdateCategory;
 using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
@@ -8,9 +9,9 @@ using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Events.Presentation.Categories;
 
-internal static class UpdateCategory
+internal class UpdateCategory : IEndpoint
 {
-    public static void MapEndpoint(IEndpointRouteBuilder app)
+    public void MapEndpoint(IEndpointRouteBuilder app)
     {
         app.MapPut("categories/{id}", async (Guid id, Request request, ISender sender) =>
         {
