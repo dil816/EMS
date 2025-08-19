@@ -1,3 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Common.Presentation\EMS.Common.Presentation.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.Application\EMS.Modules.Ticketing.Application.csproj" />
+  </ItemGroup>
 </Project>
