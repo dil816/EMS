@@ -1,7 +1,7 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.TicketTypes.CreateTicketType;
-using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +22,7 @@ internal sealed class CreateTicketType : IEndpoint
                 request.Currency,
                 request.Quantity));
 
-            return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
+            return result.Match(Results.Ok, ApiResults.Problem);
         })
         .WithTags(Tags.TicketTypes);
     }

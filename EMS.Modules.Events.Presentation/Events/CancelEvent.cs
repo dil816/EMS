@@ -1,7 +1,7 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Events.CancelEvent;
-using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +16,7 @@ internal sealed class CancelEvent : IEndpoint
         {
             Result result = await sender.Send(new CancelEventCommand(id));
 
-            return result.Match(Results.NoContent, ApiResults.ApiResults.Problem);
+            return result.Match(Results.NoContent, ApiResults.Problem);
         })
         .WithTags(Tags.Events);
     }

@@ -1,6 +1,6 @@
 ﻿using EMS.Common.Domain;
 
-namespace EMS.Modules.Events.Presentation.ApiResults;
+namespace EMS.Common.Presentation.ApiResults;
 public static class ResultExtensions
 {
     public static TOut Match<TOut>(

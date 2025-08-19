@@ -1,7 +1,7 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Events.GetEvents;
-using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +16,7 @@ internal sealed class GetEvents : IEndpoint
         {
             Result<IReadOnlyCollection<EventResponse>> result = await sender.Send(new GetEventsQuery());
 
-            return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
+            return result.Match(Results.Ok, ApiResults.Problem);
         })
         .WithTags(Tags.Events);
     }

@@ -1,8 +1,8 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.TicketTypes.GetTicketType;
 using EMS.Modules.Events.Application.TicketTypes.GetTicketTypes;
-using EMS.Modules.Events.Presentation.ApiResults;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -19,7 +19,7 @@ internal sealed class GetTicketTypes : IEndpoint
             Result<IReadOnlyCollection<TicketTypeResponse>> result = await sender.Send(
                 new GetTicketTypesQuery(eventId));
 
-            return result.Match(Results.Ok, ApiResults.ApiResults.Problem);
+            return result.Match(Results.Ok, ApiResults.Problem);
         })
         .WithTags(Tags.TicketTypes);
     }

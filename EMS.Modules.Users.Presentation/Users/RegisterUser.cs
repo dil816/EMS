@@ -1,6 +1,6 @@
 ﻿using EMS.Common.Domain;
+using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
-using EMS.Modules.Events.Presentation.ApiResults;
 using EMS.Modules.Users.Application.Users.RegisterUser;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
