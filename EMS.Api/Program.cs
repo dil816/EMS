@@ -4,6 +4,7 @@ using EMS.Common.Application;
 using EMS.Common.Infrastructure;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Infrastructure;
+using EMS.Modules.Ticketing.Infrastructure;
 using EMS.Modules.Users.Infrastructure;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -24,7 +25,8 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddApplication([
     EMS.Modules.Events.Application.AssemblyReference.Assembly,
-    EMS.Modules.Users.Application.AssemblyReference.Assembly]);
+    EMS.Modules.Users.Application.AssemblyReference.Assembly,
+    EMS.Modules.Ticketing.Application.AssemblyReference.Assembly]);
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
@@ -33,7 +35,7 @@ builder.Services.AddInfrastructure(
     databaseConnectionString,
     redisConnectionString);
 
-builder.Configuration.AddModuleConfiguration(["events", "users"]);
+builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing"]);
 
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
@@ -41,6 +43,7 @@ builder.Services.AddHealthChecks()
 
 builder.Services.AddEventsModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
+builder.Services.AddTicketingModule(builder.Configuration);
 
 WebApplication app = builder.Build();
 
