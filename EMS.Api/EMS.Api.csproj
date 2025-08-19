@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EMS.Modules.Events.Infrastructure\EMS.Modules.Events.Infrastructure.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.Infrastructure\EMS.Modules.Ticketing.Infrastructure.csproj" />
     <ProjectReference Include="..\EMS.Modules.Users.Infrastructure\EMS.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
 
