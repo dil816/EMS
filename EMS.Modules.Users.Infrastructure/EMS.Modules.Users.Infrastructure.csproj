@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Common.Infrastructure\EMS.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Users.Application\EMS.Modules.Users.Application.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Users.Presentation\EMS.Modules.Users.Presentation.csproj" />
+  </ItemGroup>
 
 </Project>
