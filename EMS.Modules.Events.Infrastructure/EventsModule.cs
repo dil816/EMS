@@ -1,4 +1,5 @@
-﻿using EMS.Common.Presentation.EndPoints;
+﻿using EMS.Common.Infrastructure.Interceptors;
+using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Categories;
 using EMS.Modules.Events.Domain.Events;
@@ -30,14 +31,14 @@ public static class EventsModule
     {
         string databaseConnectionString = configuration.GetConnectionString("Database")!;
 
-        services.AddDbContext<EventsDbContext>(options =>
+        services.AddDbContext<EventsDbContext>((sp, options) =>
             options
                 .UseNpgsql(
                     databaseConnectionString,
                     npgSqlOptions => npgSqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schema.Events))
                 .UseSnakeCaseNamingConvention()
-                .AddInterceptors());
+                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>()));
 
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();

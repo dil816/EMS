@@ -4,6 +4,7 @@ using EMS.Common.Application.Data;
 using EMS.Common.Infrastructure.Caching;
 using EMS.Common.Infrastructure.Clock;
 using EMS.Common.Infrastructure.Data;
+using EMS.Common.Infrastructure.Interceptors;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -22,6 +23,8 @@ public static class InfrastructureConfiguration
         services.TryAddSingleton(npgSqlDataSource);
 
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+
+        services.TryAddSingleton<PublishDomainEventsInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
