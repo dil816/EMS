@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <ProjectReference Include="..\EMS.Common.Application\EMS.Common.Application.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Events.PublicApi\EMS.Modules.Events.PublicApi.csproj" />
     <ProjectReference Include="..\EMS.Modules.Users.PublicApi\EMS.Modules.Users.PublicApi.csproj" />
     <ProjectReference Include="..\EMS.Modules.Ticketing.Domain\EMS.Modules.Ticketing.Domain.csproj" />
   </ItemGroup>
