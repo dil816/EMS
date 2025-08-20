@@ -3,5 +3,6 @@
     <ProjectReference Include="..\EMS.Common.Infrastructure\EMS.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Events.Presentation\EMS.Modules.Events.Presentation.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Events.PublicApi\EMS.Modules.Events.PublicApi.csproj" />
   </ItemGroup>
 </Project>
