@@ -1,7 +1,7 @@
 ﻿using EMS.Common.Application.Caching;
 
 namespace EMS.Modules.Ticketing.Application.Cart;
-internal class CartService(ICacheService cacheService)
+public class CartService(ICacheService cacheService)
 {
     private static readonly TimeSpan DefaultExpiration = TimeSpan.FromMinutes(20);
 
