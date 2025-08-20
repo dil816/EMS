@@ -7,7 +7,9 @@ using EMS.Modules.Events.Domain.TicketTypes;
 using EMS.Modules.Events.Infrastructure.Categories;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
+using EMS.Modules.Events.Infrastructure.PublicApi;
 using EMS.Modules.Events.Infrastructure.TicketTypes;
+using EMS.Modules.Events.PublicApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +45,7 @@ public static class EventsModule
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
-
+        services.AddScoped<IEventsApi, EventsApi>();
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventsDbContext>());
     }
 }
