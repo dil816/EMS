@@ -3,7 +3,9 @@ using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Users.Application.Abstractions.Data;
 using EMS.Modules.Users.Domain.Users;
 using EMS.Modules.Users.Infrastructure.Database;
+using EMS.Modules.Users.Infrastructure.PublicApi;
 using EMS.Modules.Users.Infrastructure.Users;
+using EMS.Modules.Users.PublicApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -37,5 +39,7 @@ public static class UsersModule
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<UsersDbContext>());
+
+        services.AddScoped<IUsersApi, UsersApi>();
     }
 }
