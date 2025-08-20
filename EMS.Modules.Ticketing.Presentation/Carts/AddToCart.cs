@@ -1,7 +1,7 @@
 ﻿using EMS.Common.Domain;
 using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
-using EMS.Modules.Ticketing.Application.Cart.AddItemToCart;
+using EMS.Modules.Ticketing.Application.Carts.AddItemToCart;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

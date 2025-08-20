@@ -1,4 +1,4 @@
-﻿namespace EMS.Modules.Ticketing.Application.Cart;
+﻿namespace EMS.Modules.Ticketing.Application.Carts;
 public sealed class CartItem
 {
     public Guid TicketTypeId { get; set; }

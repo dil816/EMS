@@ -1,5 +1,5 @@
 ﻿using EMS.Common.Presentation.EndPoints;
-using EMS.Modules.Ticketing.Application.Cart;
+using EMS.Modules.Ticketing.Application.Carts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

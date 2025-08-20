@@ -6,7 +6,7 @@ using EMS.Modules.Ticketing.Domain.Events;
 using EMS.Modules.Users.PublicApi;
 using FluentValidation;
 
-namespace EMS.Modules.Ticketing.Application.Cart.AddItemToCart;
+namespace EMS.Modules.Ticketing.Application.Carts.AddItemToCart;
 public sealed record AddItemToCartCommand(Guid CustomerId, Guid TicketTypeId, decimal Quantity) : ICommand;
 
 internal sealed class AddItemToCartCommandValidator : AbstractValidator<AddItemToCartCommand>
