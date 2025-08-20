@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Presentation.EndPoints;
+using EMS.Modules.Ticketing.Application.Cart;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +20,6 @@ public static class TicketingModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        // TODO
+        services.AddSingleton<CartService>();
     }
 }
