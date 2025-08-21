@@ -3,7 +3,6 @@ using EMS.Common.Domain;
 using EMS.Modules.Events.PublicApi;
 using EMS.Modules.Ticketing.Domain.Customers;
 using EMS.Modules.Ticketing.Domain.Events;
-using EMS.Modules.Users.PublicApi;
 using FluentValidation;
 
 namespace EMS.Modules.Ticketing.Application.Carts.AddItemToCart;
@@ -19,13 +18,16 @@ internal sealed class AddItemToCartCommandValidator : AbstractValidator<AddItemT
     }
 }
 
-internal sealed class AddItemToCartCommandHandler(CartService cartService, IUsersApi usersApi, IEventsApi eventsApi)
+internal sealed class AddItemToCartCommandHandler(
+    CartService cartService,
+    ICustomerRepository customerRepository,
+    IEventsApi eventsApi)
     : ICommandHandler<AddItemToCartCommand>
 {
     public async Task<Result> Handle(AddItemToCartCommand request, CancellationToken cancellationToken)
     {
         // 1. Get Customer
-        UserResponse? customer = await usersApi.GetAsync(request.CustomerId, cancellationToken);
+        Customer? customer = await customerRepository.GetAsync(request.CustomerId, cancellationToken);
 
         if (customer is null)
         {
