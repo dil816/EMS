@@ -1,5 +1,14 @@
-﻿using EMS.Common.Presentation.EndPoints;
+﻿using EMS.Common.Infrastructure.Interceptors;
+using EMS.Common.Presentation.EndPoints;
+using EMS.Modules.Ticketing.Application.Abstractions;
 using EMS.Modules.Ticketing.Application.Carts;
+using EMS.Modules.Ticketing.Domain.Customers;
+using EMS.Modules.Ticketing.Infrastructure.Customers;
+using EMS.Modules.Ticketing.Infrastructure.Database;
+using EMS.Modules.Ticketing.Infrastructure.PublicApi;
+using EMS.Modules.Ticketing.PublicApi;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,12 +27,23 @@ public static class TicketingModule
         return services;
     }
 
-#pragma warning disable S1172 // Unused method parameters should be removed
-#pragma warning disable IDE0060 // Remove unused parameter
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
-#pragma warning restore IDE0060 // Remove unused parameter
-#pragma warning restore S1172 // Unused method parameters should be removed
     {
+        services.AddDbContext<TicketingDbContext>((sp, options) =>
+           options
+               .UseNpgsql(
+                   configuration.GetConnectionString("Database"),
+                   npgSqlOptions => npgSqlOptions
+                       .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Ticketing))
+               .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+               .UseSnakeCaseNamingConvention());
+
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TicketingDbContext>());
+
         services.AddSingleton<CartService>();
+
+        services.AddScoped<ITicketingApi, TicketingApi>();
     }
 }
