@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EMS.Common.Application\EMS.Common.Application.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.PublicApi\EMS.Modules.Ticketing.PublicApi.csproj" />
     <ProjectReference Include="..\EMS.Modules.Users.Domain\EMS.Modules.Users.Domain.csproj" />
   </ItemGroup>
 
