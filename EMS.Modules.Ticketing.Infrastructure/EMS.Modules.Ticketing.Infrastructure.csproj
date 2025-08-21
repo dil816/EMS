@@ -3,5 +3,6 @@
     <ProjectReference Include="..\EMS.Common.Infrastructure\EMS.Common.Infrastructure.csproj" />
     <ProjectReference Include="..\EMS.Modules.Ticketing.Application\EMS.Modules.Ticketing.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Ticketing.Presentation\EMS.Modules.Ticketing.Presentation.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.PublicApi\EMS.Modules.Ticketing.PublicApi.csproj" />
   </ItemGroup>
 </Project>
