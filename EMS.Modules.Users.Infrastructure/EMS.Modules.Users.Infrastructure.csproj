@@ -2,7 +2,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EMS.Common.Infrastructure\EMS.Common.Infrastructure.csproj" />
-    <ProjectReference Include="..\EMS.Modules.Users.PublicApi\EMS.Modules.Users.PublicApi.csproj" />
     <ProjectReference Include="..\EMS.Modules.Users.Application\EMS.Modules.Users.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Users.Presentation\EMS.Modules.Users.Presentation.csproj" />
   </ItemGroup>
