@@ -1,10 +1,12 @@
 ﻿using EMS.Common.Application.Caching;
 using EMS.Common.Application.Clock;
 using EMS.Common.Application.Data;
+using EMS.Common.Application.EventBus;
 using EMS.Common.Infrastructure.Caching;
 using EMS.Common.Infrastructure.Clock;
 using EMS.Common.Infrastructure.Data;
 using EMS.Common.Infrastructure.Interceptors;
+using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
@@ -42,6 +44,18 @@ public static class InfrastructureConfiguration
         }
 
         services.TryAddSingleton<ICacheService, CacheService>();
+
+        services.TryAddSingleton<IEventBus, EventBus.EventBus>();
+
+        services.AddMassTransit((configure) =>
+        {
+            configure.SetKebabCaseEndpointNameFormatter();
+
+            configure.UsingInMemory((context, cfg) =>
+            {
+                cfg.ConfigureEndpoints(context);
+            });
+        });
 
         return services;
     }
