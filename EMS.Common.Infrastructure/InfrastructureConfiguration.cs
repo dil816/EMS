@@ -18,6 +18,7 @@ public static class InfrastructureConfiguration
 {
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
+        Action<IRegistrationConfigurator>[] moduleConfigureConsumers,
         string databaseConnectionString,
         string redisConnectionString)
     {
@@ -49,6 +50,11 @@ public static class InfrastructureConfiguration
 
         services.AddMassTransit((configure) =>
         {
+            foreach (Action<IRegistrationConfigurator> configureConsumer in moduleConfigureConsumers)
+            {
+                configureConsumer(configure);
+            }
+
             configure.SetKebabCaseEndpointNameFormatter();
 
             configure.UsingInMemory((context, cfg) =>

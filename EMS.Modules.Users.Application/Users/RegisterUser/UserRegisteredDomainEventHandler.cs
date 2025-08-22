@@ -1,13 +1,14 @@
-﻿using EMS.Common.Application.Exceptions;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Common.Application.Exceptions;
 using EMS.Common.Application.Messaging;
 using EMS.Common.Domain;
-using EMS.Modules.Ticketing.PublicApi;
 using EMS.Modules.Users.Application.Users.GetUser;
 using EMS.Modules.Users.Domain.Users;
+using EMS.Modules.Users.IntegrationEvents;
 using MediatR;
 
 namespace EMS.Modules.Users.Application.Users.RegisterUser;
-internal sealed class UserRegisteredDomainEventHandler(ISender sender, ITicketingApi ticketingApi)
+internal sealed class UserRegisteredDomainEventHandler(ISender sender, IEventBus eventBus)
     : IDomainEventHandler<UserRegisteredDomainEvent>
 {
     public async Task Handle(UserRegisteredDomainEvent notification, CancellationToken cancellationToken)
@@ -19,11 +20,14 @@ internal sealed class UserRegisteredDomainEventHandler(ISender sender, ITicketin
             throw new EmsException(nameof(GetUserQuery), result.Error);
         }
 
-        await ticketingApi.CreateCustomerAsync(
-            result.Value.Id,
-            result.Value.Email,
-            result.Value.FirstName,
-            result.Value.LastName,
+        await eventBus.PublishAsync(
+            new UserRegisteredIntegrationEvent(
+                notification.Id,
+                notification.OccurredOnUtc,
+                result.Value.Id,
+                result.Value.Email,
+                result.Value.FirstName,
+                result.Value.LastName),
             cancellationToken);
     }
 }

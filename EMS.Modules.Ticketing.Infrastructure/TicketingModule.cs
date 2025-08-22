@@ -5,8 +5,8 @@ using EMS.Modules.Ticketing.Application.Carts;
 using EMS.Modules.Ticketing.Domain.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Database;
-using EMS.Modules.Ticketing.Infrastructure.PublicApi;
-using EMS.Modules.Ticketing.PublicApi;
+using EMS.Modules.Ticketing.Presentation.Customers;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +27,11 @@ public static class TicketingModule
         return services;
     }
 
+    public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
+    {
+        registrationConfigurator.AddConsumer<UserRegisteredIntegrationEventConsumer>();
+    }
+
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TicketingDbContext>((sp, options) =>
@@ -43,7 +48,5 @@ public static class TicketingModule
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<TicketingDbContext>());
 
         services.AddSingleton<CartService>();
-
-        services.AddScoped<ITicketingApi, TicketingApi>();
     }
 }
