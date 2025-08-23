@@ -9,7 +9,7 @@ using EMS.Modules.Ticketing.Domain.Events;
 using EMS.Modules.Ticketing.Domain.Orders;
 using EMS.Modules.Ticketing.Domain.Payments;
 
-namespace EMS.Modules.Ticketing.Application.Orders;
+namespace EMS.Modules.Ticketing.Application.Orders.CreateOrder;
 
 internal sealed class CreateOrderCommandHandler(
     IUnitOfWork unitOfWork,

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace EMS.Modules.Ticketing.Application.Orders;
+namespace EMS.Modules.Ticketing.Application.Orders.CreateOrder;
 
 internal sealed class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
 {
