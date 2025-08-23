@@ -1,5 +1,5 @@
 ﻿using System.Data.Common;
-using EMS.Modules.Ticketing.Application.Abstractions;
+using EMS.Modules.Ticketing.Application.Abstractions.Data;
 using EMS.Modules.Ticketing.Domain.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Customers;
 using Microsoft.EntityFrameworkCore;

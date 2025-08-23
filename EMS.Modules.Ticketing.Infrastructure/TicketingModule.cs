@@ -1,6 +1,6 @@
 ﻿using EMS.Common.Infrastructure.Interceptors;
 using EMS.Common.Presentation.EndPoints;
-using EMS.Modules.Ticketing.Application.Abstractions;
+using EMS.Modules.Ticketing.Application.Abstractions.Data;
 using EMS.Modules.Ticketing.Application.Carts;
 using EMS.Modules.Ticketing.Domain.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Customers;

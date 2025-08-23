@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace EMS.Modules.Ticketing.Application.Abstractions;
+namespace EMS.Modules.Ticketing.Application.Abstractions.Data;
 public interface IUnitOfWork
 {
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
