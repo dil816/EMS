@@ -1,0 +1,54 @@
+﻿using System.Data.Common;
+using EMS.Common.Application.Messaging;
+using EMS.Common.Domain;
+using EMS.Modules.Ticketing.Application.Abstractions.Data;
+using EMS.Modules.Ticketing.Domain.Events;
+using EMS.Modules.Ticketing.Domain.Payments;
+using FluentValidation;
+
+namespace EMS.Modules.Ticketing.Application.Payments.RefundPaymentsForEvent;
+public sealed record RefundPaymentsForEventCommand(Guid EventId) : ICommand;
+
+
+internal sealed class RefundPaymentsForEventCommandHandler(
+    IEventRepository eventRepository,
+    IPaymentRepository paymentRepository,
+    IUnitOfWork unitOfWork)
+    : ICommandHandler<RefundPaymentsForEventCommand>
+{
+    public async Task<Result> Handle(RefundPaymentsForEventCommand request, CancellationToken cancellationToken)
+    {
+        await using DbTransaction transaction = await unitOfWork.BeginTransactionAsync(cancellationToken);
+
+        Event? @event = await eventRepository.GetAsync(request.EventId, cancellationToken);
+
+        if (@event is null)
+        {
+            return Result.Failure(EventErrors.NotFound(request.EventId));
+        }
+
+        IEnumerable<Payment> payments = await paymentRepository.GetForEventAsync(@event, cancellationToken);
+
+        foreach (Payment payment in payments)
+        {
+            payment.Refund(payment.Amount - (payment.AmountRefunded ?? decimal.Zero));
+        }
+
+        @event.PaymentsRefunded();
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        await transaction.CommitAsync(cancellationToken);
+
+        return Result.Success();
+    }
+}
+
+
+internal sealed class RefundPaymentsForEventCommandValidator : AbstractValidator<RefundPaymentsForEventCommand>
+{
+    public RefundPaymentsForEventCommandValidator()
+    {
+        RuleFor(c => c.EventId).NotEmpty();
+    }
+}
