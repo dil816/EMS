@@ -6,6 +6,10 @@ using EMS.Modules.Ticketing.Domain.Orders;
 using EMS.Modules.Ticketing.Domain.Payments;
 using EMS.Modules.Ticketing.Domain.Tickets;
 using EMS.Modules.Ticketing.Infrastructure.Customers;
+using EMS.Modules.Ticketing.Infrastructure.Events;
+using EMS.Modules.Ticketing.Infrastructure.Orders;
+using EMS.Modules.Ticketing.Infrastructure.Payments;
+using EMS.Modules.Ticketing.Infrastructure.Tickets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
@@ -31,6 +35,12 @@ public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> opti
     {
         modelBuilder.HasDefaultSchema(Schemas.Ticketing);
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+        modelBuilder.ApplyConfiguration(new EventConfiguration());
+        modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderItemConfiguration());
+        modelBuilder.ApplyConfiguration(new TicketConfiguration());
+        modelBuilder.ApplyConfiguration(new PaymentConfiguration());
     }
 
     public async Task<DbTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default)
