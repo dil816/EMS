@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EMS.Modules.Ticketing.Infrastructure.Events;
-internal class EventConfiguration : IEntityTypeConfiguration<Event>
+internal sealed class EventConfiguration : IEntityTypeConfiguration<Event>
 {
     public void Configure(EntityTypeBuilder<Event> builder)
     {
