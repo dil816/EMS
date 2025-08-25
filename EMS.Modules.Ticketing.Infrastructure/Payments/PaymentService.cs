@@ -1,7 +1,7 @@
 ﻿using EMS.Modules.Ticketing.Application.Abstractions.Payments;
 
 namespace EMS.Modules.Ticketing.Infrastructure.Payments;
-internal class PaymentService : IPaymentService
+internal sealed class PaymentService : IPaymentService
 {
     public Task<PaymentResponse> ChargeAsync(decimal amount, string currency)
     {

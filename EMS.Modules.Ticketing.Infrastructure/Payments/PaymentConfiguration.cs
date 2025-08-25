@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace EMS.Modules.Ticketing.Infrastructure.Payments;
-internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+internal sealed class PaymentConfiguration : IEntityTypeConfiguration<Payment>
 {
     public void Configure(EntityTypeBuilder<Payment> builder)
     {

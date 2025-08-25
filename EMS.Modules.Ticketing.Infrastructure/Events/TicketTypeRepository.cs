@@ -3,7 +3,7 @@ using EMS.Modules.Ticketing.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMS.Modules.Ticketing.Infrastructure.Events;
-internal class TicketTypeRepository(TicketingDbContext context) : ITicketTypeRepository
+internal sealed class TicketTypeRepository(TicketingDbContext context) : ITicketTypeRepository
 {
     public async Task<TicketType?> GetAsync(Guid Id, CancellationToken cancellationToken = default)
     {
