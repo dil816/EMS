@@ -2,6 +2,7 @@
 using EMS.Common.Application.Clock;
 using EMS.Common.Application.Data;
 using EMS.Common.Application.EventBus;
+using EMS.Common.Infrastructure.Authentication;
 using EMS.Common.Infrastructure.Caching;
 using EMS.Common.Infrastructure.Clock;
 using EMS.Common.Infrastructure.Data;
@@ -22,6 +23,8 @@ public static class InfrastructureConfiguration
         string databaseConnectionString,
         string redisConnectionString)
     {
+        services.AddAuthenticationInternal();
+
         NpgsqlDataSource npgSqlDataSource = new NpgsqlDataSourceBuilder(databaseConnectionString).Build();
         services.TryAddSingleton(npgSqlDataSource);
 
