@@ -1,5 +1,11 @@
 {
     "Users": {
-
+        "KeyCloak": {
+            "AdminUrl": "http://ems.identity:8080/admin/realms/ems/",
+            "TokenUrl": "http://ems.identity:8080/realms/ems/protocol/openid-connect/token",
+            "ConfidentialClientId": "ems-confidential-client",
+            "ConfidentialClientSecret": "lMkxTM3c3CMkPCgwRHS4IVrXFspMTSOT",
+            "PublicClientId": "ems-public-client"
+        }
     }
 }
