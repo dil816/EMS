@@ -11,7 +11,7 @@ internal static class AuthenticationExtensions
 
         services.AddHttpContextAccessor();
 
-        services.ConfigureOptions<JwtConfigureOptions>();
+        services.ConfigureOptions<JwtBearerConfigureOptions>();
 
         return services;
     }
