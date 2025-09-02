@@ -1,4 +1,6 @@
-﻿using EMS.Common.Domain;
+﻿using System.Security.Claims;
+using EMS.Common.Domain;
+using EMS.Common.Infrastructure.Authentication;
 using EMS.Common.Presentation.ApiResults;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Users.Application.Users.GetUser;
@@ -12,12 +14,13 @@ internal sealed class GetUserProfile : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("users/{id}/profile", async (Guid id, ISender sender) =>
+        app.MapGet("users/profile", async (ClaimsPrincipal claims, ISender sender) =>
         {
-            Result<UserResponse> result = await sender.Send(new GetUserQuery(id));
+            Result<UserResponse> result = await sender.Send(new GetUserQuery(claims.GetUserId()));
 
             return result.Match(Results.Ok, ApiResults.Problem);
         })
+        .RequireAuthorization("user:read")
         .WithTags(Tags.Users);
     }
 }

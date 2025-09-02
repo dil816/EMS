@@ -1,8 +1,10 @@
-﻿using EMS.Common.Infrastructure.Interceptors;
+﻿using EMS.Common.Application.Authorization;
+using EMS.Common.Infrastructure.Interceptors;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Users.Application.Abstractions.Data;
 using EMS.Modules.Users.Application.Abstractions.Identity;
 using EMS.Modules.Users.Domain.Users;
+using EMS.Modules.Users.Infrastructure.Authorization;
 using EMS.Modules.Users.Infrastructure.Database;
 using EMS.Modules.Users.Infrastructure.Identity;
 using EMS.Modules.Users.Infrastructure.Users;
@@ -28,6 +30,8 @@ public static class UsersModule
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<IPermissionService, PermissionService>();
+
         services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
 
         services.AddTransient<KeyCloakAuthDelegatingHandler>();
