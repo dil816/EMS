@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  
-
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Common.Presentation\EMS.Common.Presentation.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Attendance.Application\EMS.Modules.Attendance.Application.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Events.IntegrationEvents\EMS.Modules.Events.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.IntegrationEvents\EMS.Modules.Ticketing.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Users.IntegrationEvents\EMS.Modules.Users.IntegrationEvents.csproj" />
+  </ItemGroup>
 </Project>
