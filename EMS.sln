@@ -73,6 +73,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.Presentation", "EMS.Modules.Attendance.Presentation\EMS.Modules.Attendance.Presentation.csproj", "{7CEECBE2-5366-461A-A9A0-C9F5F8271F55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.Application", "EMS.Modules.Attendance.Application\EMS.Modules.Attendance.Application.csproj", "{FF0C21B5-981E-405D-B095-389824D2A47F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,10 @@ Global
 		{7CEECBE2-5366-461A-A9A0-C9F5F8271F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CEECBE2-5366-461A-A9A0-C9F5F8271F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CEECBE2-5366-461A-A9A0-C9F5F8271F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF0C21B5-981E-405D-B095-389824D2A47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0C21B5-981E-405D-B095-389824D2A47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0C21B5-981E-405D-B095-389824D2A47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0C21B5-981E-405D-B095-389824D2A47F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,6 +216,7 @@ Global
 		{62A56BF9-3099-407B-B156-9AEC4CEB93EC} = {0A778180-8BB3-4776-B564-A997F27569C6}
 		{8DA60182-7697-4CAB-8AD8-AACAF5B57DDA} = {0A778180-8BB3-4776-B564-A997F27569C6}
 		{7CEECBE2-5366-461A-A9A0-C9F5F8271F55} = {0A778180-8BB3-4776-B564-A997F27569C6}
+		{FF0C21B5-981E-405D-B095-389824D2A47F} = {0A778180-8BB3-4776-B564-A997F27569C6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
