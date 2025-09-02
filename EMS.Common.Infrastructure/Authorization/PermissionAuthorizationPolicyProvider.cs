@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 
 namespace EMS.Common.Infrastructure.Authorization;
-internal class PermissionAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
+internal sealed class PermissionAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvider
 {
     private readonly AuthorizationOptions _authorizationOptions;
 
