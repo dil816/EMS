@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Domain;
+using EMS.Modules.Attendance.Domain.Attendees;
 using EMS.Modules.Attendance.Domain.Events;
 
 namespace EMS.Modules.Attendance.Domain.Tickets;
