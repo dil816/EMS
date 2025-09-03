@@ -3,6 +3,7 @@ using EMS.Api.Middleware;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
 using EMS.Common.Presentation.EndPoints;
+using EMS.Modules.Attendance.Infrastructure;
 using EMS.Modules.Events.Infrastructure;
 using EMS.Modules.Ticketing.Infrastructure;
 using EMS.Modules.Users.Infrastructure;
@@ -47,6 +48,7 @@ builder.Services.AddHealthChecks()
 builder.Services.AddEventsModule(builder.Configuration);
 builder.Services.AddUsersModule(builder.Configuration);
 builder.Services.AddTicketingModule(builder.Configuration);
+builder.Services.AddAttendanceModule(builder.Configuration);
 
 WebApplication app = builder.Build();
 
