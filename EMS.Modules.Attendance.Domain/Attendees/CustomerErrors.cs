@@ -1,0 +1,9 @@
+﻿using EMS.Common.Domain;
+
+namespace EMS.Modules.Attendance.Domain.Attendees;
+
+public static class CustomerErrors
+{
+    public static Error NotFound(Guid attendeeId) =>
+        Error.NotFound("Attendees.NotFound", $"The attendee with the identifier {attendeeId} was not found");
+}
