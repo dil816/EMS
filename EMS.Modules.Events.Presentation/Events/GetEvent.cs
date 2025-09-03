@@ -18,6 +18,7 @@ internal sealed class GetEvent : IEndpoint
 
             return result.Match(Results.Ok, ApiResults.Problem);
         })
+        .RequireAuthorization(Permissions.GetEvents)
         .WithTags(Tags.Events);
     }
 }
