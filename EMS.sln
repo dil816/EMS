@@ -79,6 +79,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Integrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Ticketing.IntegrationEvents", "EMS.Modules.Ticketing.IntegrationEvents\EMS.Modules.Ticketing.IntegrationEvents.csproj", "{2557CC0A-D725-4BBF-BC3F-17E72FADF340}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1954848B-2978-46C1-AAC7-CC98B549C1E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.ArchitectureTests", "EMS.ArchitectureTests\EMS.ArchitectureTests.csproj", "{3D2B3C5D-815C-495D-B858-5C85D6433C8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +197,10 @@ Global
 		{2557CC0A-D725-4BBF-BC3F-17E72FADF340}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2557CC0A-D725-4BBF-BC3F-17E72FADF340}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2557CC0A-D725-4BBF-BC3F-17E72FADF340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D2B3C5D-815C-495D-B858-5C85D6433C8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D2B3C5D-815C-495D-B858-5C85D6433C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D2B3C5D-815C-495D-B858-5C85D6433C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D2B3C5D-815C-495D-B858-5C85D6433C8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,6 +239,7 @@ Global
 		{FF0C21B5-981E-405D-B095-389824D2A47F} = {0A778180-8BB3-4776-B564-A997F27569C6}
 		{AEDA470B-D069-452B-AF55-CECD3B4287D5} = {AA39295F-FF8C-4571-86FD-B0475186AB56}
 		{2557CC0A-D725-4BBF-BC3F-17E72FADF340} = {9AE82879-880B-4DC2-B9DB-4633B8A17FA7}
+		{3D2B3C5D-815C-495D-B858-5C85D6433C8A} = {1954848B-2978-46C1-AAC7-CC98B549C1E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
