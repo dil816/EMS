@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
 namespace EMS.Modules.Ticketing.Presentation.Orders;
-internal class GetOrders : IEndpoint
+internal sealed class GetOrders : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
