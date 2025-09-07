@@ -17,6 +17,8 @@ using EMS.Modules.Ticketing.Infrastructure.Orders;
 using EMS.Modules.Ticketing.Infrastructure.Payments;
 using EMS.Modules.Ticketing.Infrastructure.Tickets;
 using EMS.Modules.Ticketing.Presentation.Customers;
+using EMS.Modules.Ticketing.Presentation.Events;
+using EMS.Modules.Ticketing.Presentation.TicketTypes;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -41,6 +43,9 @@ public static class TicketingModule
     public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
     {
         registrationConfigurator.AddConsumer<UserRegisteredIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<UserProfileUpdatedIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<EventPublishedIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<TicketTypePriceChangedIntegrationEventConsumer>();
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)

@@ -1,4 +1,5 @@
-﻿using EMS.Common.Application.Caching;
+﻿using Dapper;
+using EMS.Common.Application.Caching;
 using EMS.Common.Application.Clock;
 using EMS.Common.Application.Data;
 using EMS.Common.Application.EventBus;
@@ -36,6 +37,8 @@ public static class InfrastructureConfiguration
         services.TryAddSingleton<PublishDomainEventsInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        SqlMapper.AddTypeHandler(new GenericArrayHandler<string>());
 
         try
         {

@@ -10,6 +10,10 @@ using EMS.Modules.Attendance.Infrastructure.Authentication;
 using EMS.Modules.Attendance.Infrastructure.Database;
 using EMS.Modules.Attendance.Infrastructure.Events;
 using EMS.Modules.Attendance.Infrastructure.Tickets;
+using EMS.Modules.Attendance.Presentation.Attendees;
+using EMS.Modules.Attendance.Presentation.Events;
+using EMS.Modules.Attendance.Presentation.Tickets;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +32,14 @@ public static class AttendanceModule
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
         return services;
+    }
+
+    public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
+    {
+        registrationConfigurator.AddConsumer<UserRegisteredIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<UserProfileUpdatedIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<EventPublishedIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<TicketIssuedIntegrationEventConsumer>();
     }
 
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
