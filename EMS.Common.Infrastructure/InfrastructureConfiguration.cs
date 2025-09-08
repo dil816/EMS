@@ -8,11 +8,12 @@ using EMS.Common.Infrastructure.Authorization;
 using EMS.Common.Infrastructure.Caching;
 using EMS.Common.Infrastructure.Clock;
 using EMS.Common.Infrastructure.Data;
-using EMS.Common.Infrastructure.Interceptors;
+using EMS.Common.Infrastructure.Outbox;
 using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Npgsql;
+using Quartz;
 using StackExchange.Redis;
 
 namespace EMS.Common.Infrastructure;
@@ -34,11 +35,15 @@ public static class InfrastructureConfiguration
 
         services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
 
-        services.TryAddSingleton<PublishDomainEventsInterceptor>();
+        services.TryAddSingleton<InsertOutboxMessagesInterceptor>();
 
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         SqlMapper.AddTypeHandler(new GenericArrayHandler<string>());
+
+        services.AddQuartz();
+
+        services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
 
         try
         {

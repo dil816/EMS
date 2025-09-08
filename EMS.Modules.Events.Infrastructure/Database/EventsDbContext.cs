@@ -1,4 +1,5 @@
-﻿using EMS.Modules.Events.Application.Abstractions.Data;
+﻿using EMS.Common.Infrastructure.Outbox;
+using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Categories;
 using EMS.Modules.Events.Domain.Events;
 using EMS.Modules.Events.Domain.TicketTypes;
@@ -19,6 +20,7 @@ public sealed class EventsDbContext(DbContextOptions<EventsDbContext> options) :
     {
         modelBuilder.HasDefaultSchema(Schema.Events);
 
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
     }

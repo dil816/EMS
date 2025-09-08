@@ -1,4 +1,5 @@
 ﻿using System.Data.Common;
+using EMS.Common.Infrastructure.Outbox;
 using EMS.Modules.Ticketing.Application.Abstractions.Data;
 using EMS.Modules.Ticketing.Domain.Customers;
 using EMS.Modules.Ticketing.Domain.Events;
@@ -34,6 +35,8 @@ public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> opti
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema(Schemas.Ticketing);
+
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());

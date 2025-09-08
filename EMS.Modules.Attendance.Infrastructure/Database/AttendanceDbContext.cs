@@ -1,4 +1,5 @@
-﻿using EMS.Modules.Attendance.Application.Abstractions.Data;
+﻿using EMS.Common.Infrastructure.Outbox;
+using EMS.Modules.Attendance.Application.Abstractions.Data;
 using EMS.Modules.Attendance.Domain.Attendees;
 using EMS.Modules.Attendance.Domain.Events;
 using EMS.Modules.Attendance.Domain.Tickets;
@@ -21,6 +22,7 @@ public sealed class AttendanceDbContext(DbContextOptions<AttendanceDbContext> op
     {
         modelBuilder.HasDefaultSchema(Schemas.Attendance);
 
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new AttendeeConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketConfiguration());

@@ -1,4 +1,4 @@
-﻿using EMS.Common.Infrastructure.Interceptors;
+﻿using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Ticketing.Application.Abstractions.Authentication;
 using EMS.Modules.Ticketing.Application.Abstractions.Data;
@@ -14,6 +14,7 @@ using EMS.Modules.Ticketing.Infrastructure.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Database;
 using EMS.Modules.Ticketing.Infrastructure.Events;
 using EMS.Modules.Ticketing.Infrastructure.Orders;
+using EMS.Modules.Ticketing.Infrastructure.Outbox;
 using EMS.Modules.Ticketing.Infrastructure.Payments;
 using EMS.Modules.Ticketing.Infrastructure.Tickets;
 using EMS.Modules.Ticketing.Presentation.Customers;
@@ -56,7 +57,7 @@ public static class TicketingModule
                    configuration.GetConnectionString("Database"),
                    npgSqlOptions => npgSqlOptions
                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Ticketing))
-               .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+               .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>())
                .UseSnakeCaseNamingConvention());
 
         services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -71,5 +72,9 @@ public static class TicketingModule
         services.AddSingleton<IPaymentService, PaymentService>();
 
         services.AddScoped<ICustomerContext, CustomerContext>();
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Ticketing:Outbox"));
+
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
     }
 }

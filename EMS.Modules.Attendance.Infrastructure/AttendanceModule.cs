@@ -1,4 +1,4 @@
-﻿using EMS.Common.Infrastructure.Interceptors;
+﻿using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Attendance.Application.Abstractions.Authentication;
 using EMS.Modules.Attendance.Application.Abstractions.Data;
@@ -9,6 +9,7 @@ using EMS.Modules.Attendance.Infrastructure.Attendees;
 using EMS.Modules.Attendance.Infrastructure.Authentication;
 using EMS.Modules.Attendance.Infrastructure.Database;
 using EMS.Modules.Attendance.Infrastructure.Events;
+using EMS.Modules.Attendance.Infrastructure.Outbox;
 using EMS.Modules.Attendance.Infrastructure.Tickets;
 using EMS.Modules.Attendance.Presentation.Attendees;
 using EMS.Modules.Attendance.Presentation.Events;
@@ -51,7 +52,7 @@ public static class AttendanceModule
                     npgSqlOptions => npgSqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Attendance))
                 .UseSnakeCaseNamingConvention()
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>()));
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>()));
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AttendanceDbContext>());
 
@@ -60,5 +61,9 @@ public static class AttendanceModule
         services.AddScoped<ITicketRepository, TicketRepository>();
 
         services.AddScoped<IAttendanceContext, AttendanceContext>();
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Attendance:Outbox"));
+
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
     }
 }

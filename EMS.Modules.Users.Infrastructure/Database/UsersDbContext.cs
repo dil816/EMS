@@ -1,4 +1,5 @@
-﻿using EMS.Modules.Users.Application.Abstractions.Data;
+﻿using EMS.Common.Infrastructure.Outbox;
+using EMS.Modules.Users.Application.Abstractions.Data;
 using EMS.Modules.Users.Domain.Users;
 using EMS.Modules.Users.Infrastructure.Users;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ public sealed class UsersDbContext(DbContextOptions<UsersDbContext> options) : D
     {
         modelBuilder.HasDefaultSchema(Schemas.Users);
 
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
         modelBuilder.ApplyConfiguration(new PermissionConfiguration());

@@ -1,4 +1,4 @@
-﻿using EMS.Common.Infrastructure.Interceptors;
+﻿using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Categories;
@@ -7,6 +7,7 @@ using EMS.Modules.Events.Domain.TicketTypes;
 using EMS.Modules.Events.Infrastructure.Categories;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
+using EMS.Modules.Events.Infrastructure.Outbox;
 using EMS.Modules.Events.Infrastructure.PublicApi;
 using EMS.Modules.Events.Infrastructure.TicketTypes;
 using EMS.Modules.Events.PublicApi;
@@ -40,12 +41,16 @@ public static class EventsModule
                     npgSqlOptions => npgSqlOptions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schema.Events))
                 .UseSnakeCaseNamingConvention()
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>()));
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>()));
 
         services.AddScoped<IEventRepository, EventRepository>();
         services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IEventsApi, EventsApi>();
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventsDbContext>());
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Events:Outbox"));
+
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
     }
 }

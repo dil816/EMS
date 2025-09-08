@@ -1,5 +1,5 @@
 ﻿using EMS.Common.Application.Authorization;
-using EMS.Common.Infrastructure.Interceptors;
+using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Users.Application.Abstractions.Data;
 using EMS.Modules.Users.Application.Abstractions.Identity;
@@ -7,6 +7,7 @@ using EMS.Modules.Users.Domain.Users;
 using EMS.Modules.Users.Infrastructure.Authorization;
 using EMS.Modules.Users.Infrastructure.Database;
 using EMS.Modules.Users.Infrastructure.Identity;
+using EMS.Modules.Users.Infrastructure.Outbox;
 using EMS.Modules.Users.Infrastructure.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -55,11 +56,15 @@ public static class UsersModule
                     configuration.GetConnectionString("Database"),
                     NpgSqlOptionsExtensions => NpgSqlOptionsExtensions
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Users))
-                .AddInterceptors(sp.GetRequiredService<PublishDomainEventsInterceptor>())
+                .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>())
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<UsersDbContext>());
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Users:outbox"));
+
+        services.ConfigureOptions<ConfigureProcessOutboxJob>();
     }
 }
