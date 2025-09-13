@@ -6,7 +6,7 @@ namespace EMS.Modules.Users.ArchitectureTests.Presentation;
 public class PresentationTests
 {
     [Fact]
-    public void IntegrationEventHandler_Should_BeSealed()
+    public void IntegrationEventConsumer_Should_BeSealed()
     {
         Types.InAssembly(BaseTest.PresentationAssembly)
             .That()
@@ -18,13 +18,13 @@ public class PresentationTests
     }
 
     [Fact]
-    public void IntegrationEventHandler_ShouldHave_NameEndingWith_DomainEventHandler()
+    public void IntegrationEventConsumer_ShouldHave_NameEndingWith_IntegrationEventConsumer()
     {
         Types.InAssembly(BaseTest.PresentationAssembly)
             .That()
             .ImplementInterface(typeof(IConsumer<>))
             .Should()
-            .HaveNameEndingWith("Consumer")
+            .HaveNameEndingWith("IntegrationEventConsumer")
             .GetResult()
             .ShouldBeSuccessful();
     }
