@@ -3,9 +3,10 @@ using System.Data.Common;
 using Dapper;
 using EMS.Common.Application.Clock;
 using EMS.Common.Application.Data;
+using EMS.Common.Application.Messaging;
 using EMS.Common.Domain;
+using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Infrastructure.Serialization;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -46,9 +47,15 @@ internal sealed class ProcessOutboxJob(
 
                 using IServiceScope scope = serviceScopeFactory.CreateScope();
 
-                IPublisher publisher = scope.ServiceProvider.GetRequiredService<IPublisher>();
+                IEnumerable<IDomainEventHandler> domainEventHandlers = DomainEventHandlersFactory.GetHandlers(
+                    domainEvent.GetType(),
+                    scope.ServiceProvider,
+                    Application.AssemblyReference.Assembly);
 
-                await publisher.Publish(domainEvent);
+                foreach (IDomainEventHandler domainEventHandler in domainEventHandlers)
+                {
+                    await domainEventHandler.Handle(domainEvent);
+                }
             }
             catch (Exception caughtException)
             {

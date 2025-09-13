@@ -1,4 +1,5 @@
-﻿using EMS.Common.Infrastructure.Outbox;
+﻿using EMS.Common.Application.Messaging;
+using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Abstractions.Data;
 using EMS.Modules.Events.Domain.Categories;
@@ -15,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EMS.Modules.Events.Infrastructure;
 public static class EventsModule
@@ -23,6 +25,8 @@ public static class EventsModule
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddDomainEventHandlers();
+
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
         services.AddInfrastructure(configuration);
@@ -52,5 +56,28 @@ public static class EventsModule
         services.Configure<OutboxOptions>(configuration.GetSection("Events:Outbox"));
 
         services.ConfigureOptions<ConfigureProcessOutboxJob>();
+    }
+
+    private static void AddDomainEventHandlers(this IServiceCollection services)
+    {
+        Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+            .ToArray();
+
+        foreach (Type domainEventHandler in domainEventHandlers)
+        {
+            services.TryAddScoped(domainEventHandler);
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
     }
 }

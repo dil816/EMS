@@ -1,4 +1,5 @@
-﻿using EMS.Common.Infrastructure.Outbox;
+﻿using EMS.Common.Application.Messaging;
+using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Attendance.Application.Abstractions.Authentication;
 using EMS.Modules.Attendance.Application.Abstractions.Data;
@@ -19,6 +20,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EMS.Modules.Attendance.Infrastructure;
 
@@ -28,6 +30,8 @@ public static class AttendanceModule
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        services.AddDomainEventHandlers();
+
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -43,7 +47,7 @@ public static class AttendanceModule
         registrationConfigurator.AddConsumer<TicketIssuedIntegrationEventConsumer>();
     }
 
-    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AttendanceDbContext>((sp, options) =>
             options
@@ -65,5 +69,28 @@ public static class AttendanceModule
         services.Configure<OutboxOptions>(configuration.GetSection("Attendance:Outbox"));
 
         services.ConfigureOptions<ConfigureProcessOutboxJob>();
+    }
+
+    private static void AddDomainEventHandlers(this IServiceCollection services)
+    {
+        Type[] domainEventHandlers = Application.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IDomainEventHandler)))
+            .ToArray();
+
+        foreach (Type domainEventHandler in domainEventHandlers)
+        {
+            services.TryAddScoped(domainEventHandler);
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
     }
 }
