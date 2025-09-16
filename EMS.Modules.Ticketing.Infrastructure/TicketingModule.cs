@@ -1,6 +1,8 @@
-﻿using EMS.Common.Application.Messaging;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Common.Application.Messaging;
 using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
+using EMS.Modules.Events.IntegrationEvents;
 using EMS.Modules.Ticketing.Application.Abstractions.Authentication;
 using EMS.Modules.Ticketing.Application.Abstractions.Data;
 using EMS.Modules.Ticketing.Application.Abstractions.Payments;
@@ -14,13 +16,12 @@ using EMS.Modules.Ticketing.Infrastructure.Authentication;
 using EMS.Modules.Ticketing.Infrastructure.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Database;
 using EMS.Modules.Ticketing.Infrastructure.Events;
+using EMS.Modules.Ticketing.Infrastructure.Inbox;
 using EMS.Modules.Ticketing.Infrastructure.Orders;
 using EMS.Modules.Ticketing.Infrastructure.Outbox;
 using EMS.Modules.Ticketing.Infrastructure.Payments;
 using EMS.Modules.Ticketing.Infrastructure.Tickets;
-using EMS.Modules.Ticketing.Presentation.Customers;
-using EMS.Modules.Ticketing.Presentation.Events;
-using EMS.Modules.Ticketing.Presentation.TicketTypes;
+using EMS.Modules.Users.IntegrationEvents;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -38,6 +39,8 @@ public static class TicketingModule
     {
         services.AddDomainEventHandlers();
 
+        services.AddIntegrationEventHandlers();
+
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -47,10 +50,10 @@ public static class TicketingModule
 
     public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
     {
-        registrationConfigurator.AddConsumer<UserRegisteredIntegrationEventConsumer>();
-        registrationConfigurator.AddConsumer<UserProfileUpdatedIntegrationEventConsumer>();
-        registrationConfigurator.AddConsumer<EventPublishedIntegrationEventConsumer>();
-        registrationConfigurator.AddConsumer<TicketTypePriceChangedIntegrationEventConsumer>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserRegisteredIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserProfileUpdatedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<EventPublishedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<TicketTypePriceChangedIntegrationEvent>>();
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
@@ -102,6 +105,30 @@ public static class TicketingModule
             Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
 
             services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
+    }
+
+    private static void AddIntegrationEventHandlers(this IServiceCollection services)
+    {
+        Type[] integrationEventHandlers = Presentation.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+            .ToArray();
+
+        foreach (Type integrationEventHandler in integrationEventHandlers)
+        {
+            services.TryAddScoped(integrationEventHandler);
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler =
+                typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+            services.Decorate(integrationEventHandler, closedIdempotentHandler);
         }
     }
 }

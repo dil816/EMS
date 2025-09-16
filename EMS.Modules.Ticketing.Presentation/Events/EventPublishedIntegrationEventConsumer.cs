@@ -1,34 +1,36 @@
-﻿using EMS.Common.Application.Exceptions;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Common.Application.Exceptions;
 using EMS.Common.Domain;
 using EMS.Modules.Events.IntegrationEvents;
 using EMS.Modules.Ticketing.Application.Events.CreateEvent;
-using MassTransit;
 using MediatR;
 
 namespace EMS.Modules.Ticketing.Presentation.Events;
 public sealed class EventPublishedIntegrationEventConsumer(ISender sender)
-    : IConsumer<EventPublishedIntegrationEvent>
+    : IntegrationEventHandler<EventPublishedIntegrationEvent>
 {
-    public async Task Consume(ConsumeContext<EventPublishedIntegrationEvent> context)
+    public override async Task Handle(
+        EventPublishedIntegrationEvent integrationEvent,
+        CancellationToken cancellationToken = default)
     {
         Result result = await sender.Send(
             new CreateEventCommand(
-                context.Message.EventId,
-                context.Message.Title,
-                context.Message.Description,
-                context.Message.Location,
-                context.Message.StartsAtUtc,
-                context.Message.EndsAtUtc,
-                context.Message.TicketTypes
+                integrationEvent.EventId,
+                integrationEvent.Title,
+                integrationEvent.Description,
+                integrationEvent.Location,
+                integrationEvent.StartsAtUtc,
+                integrationEvent.EndsAtUtc,
+                integrationEvent.TicketTypes
                 .Select(t => new CreateEventCommand.TicketTypeRequest(
                        t.Id,
-                       context.Message.EventId,
+                       integrationEvent.EventId,
                        t.Name,
                        t.Price,
                        t.Currency,
                        t.Quantity))
                 .ToList()),
-            context.CancellationToken);
+            cancellationToken);
 
         if (result.IsFailure)
         {

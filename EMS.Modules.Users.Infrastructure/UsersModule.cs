@@ -1,4 +1,5 @@
 ﻿using EMS.Common.Application.Authorization;
+using EMS.Common.Application.EventBus;
 using EMS.Common.Application.Messaging;
 using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
@@ -8,6 +9,7 @@ using EMS.Modules.Users.Domain.Users;
 using EMS.Modules.Users.Infrastructure.Authorization;
 using EMS.Modules.Users.Infrastructure.Database;
 using EMS.Modules.Users.Infrastructure.Identity;
+using EMS.Modules.Users.Infrastructure.Inbox;
 using EMS.Modules.Users.Infrastructure.Outbox;
 using EMS.Modules.Users.Infrastructure.Users;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +27,8 @@ public static class UsersModule
         IConfiguration configuration)
     {
         services.AddDomainEventHandlers();
+
+        services.AddIntegrationEventHandlers();
 
         services.AddInfrastructure(configuration);
 
@@ -92,6 +96,30 @@ public static class UsersModule
             Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
 
             services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
+    }
+
+    private static void AddIntegrationEventHandlers(this IServiceCollection services)
+    {
+        Type[] integrationEventHandlers = Presentation.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+            .ToArray();
+
+        foreach (Type integrationEventHandler in integrationEventHandlers)
+        {
+            services.TryAddScoped(integrationEventHandler);
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler =
+                typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+            services.Decorate(integrationEventHandler, closedIdempotentHandler);
         }
     }
 }

@@ -1,22 +1,22 @@
-﻿using EMS.Common.Application.Exceptions;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Common.Application.Exceptions;
 using EMS.Common.Domain;
 using EMS.Modules.Ticketing.Application.Customers.UpdateCustomer;
 using EMS.Modules.Users.IntegrationEvents;
-using MassTransit;
 using MediatR;
 
 namespace EMS.Modules.Ticketing.Presentation.Customers;
 public sealed class UserProfileUpdatedIntegrationEventConsumer(ISender sender)
-    : IConsumer<UserProfileUpdatedIntegrationEvent>
+    : IntegrationEventHandler<UserProfileUpdatedIntegrationEvent>
 {
-    public async Task Consume(ConsumeContext<UserProfileUpdatedIntegrationEvent> context)
+    public override async Task Handle(UserProfileUpdatedIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
     {
         Result result = await sender.Send(
             new UpdateCustomerCommand(
-                context.Message.UserId,
-                context.Message.FirstName,
-                context.Message.LastName),
-            context.CancellationToken);
+                integrationEvent.UserId,
+                integrationEvent.FirstName,
+                integrationEvent.LastName),
+            cancellationToken);
 
         if (result.IsFailure)
         {
