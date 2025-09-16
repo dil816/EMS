@@ -1,4 +1,5 @@
-﻿using EMS.Common.Application.Messaging;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Common.Application.Messaging;
 using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Events.Application.Abstractions.Data;
@@ -8,6 +9,7 @@ using EMS.Modules.Events.Domain.TicketTypes;
 using EMS.Modules.Events.Infrastructure.Categories;
 using EMS.Modules.Events.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Events;
+using EMS.Modules.Events.Infrastructure.Inbox;
 using EMS.Modules.Events.Infrastructure.Outbox;
 using EMS.Modules.Events.Infrastructure.PublicApi;
 using EMS.Modules.Events.Infrastructure.TicketTypes;
@@ -26,6 +28,8 @@ public static class EventsModule
         IConfiguration configuration)
     {
         services.AddDomainEventHandlers();
+
+        services.AddIntegrationEventHandlers();
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
@@ -78,6 +82,30 @@ public static class EventsModule
             Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
 
             services.Decorate(domainEventHandler, closedIdempotentHandler);
+        }
+    }
+
+    private static void AddIntegrationEventHandlers(this IServiceCollection services)
+    {
+        Type[] integrationEventHandlers = Presentation.AssemblyReference.Assembly
+            .GetTypes()
+            .Where(t => t.IsAssignableTo(typeof(IIntegrationEventHandler)))
+            .ToArray();
+
+        foreach (Type integrationEventHandler in integrationEventHandlers)
+        {
+            services.TryAddScoped(integrationEventHandler);
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
+                .Single(i => i.IsGenericType)
+                .GetGenericArguments()
+                .Single();
+
+            Type closedIdempotentHandler =
+                typeof(IdempotentIntegrationEventHandler<>).MakeGenericType(integrationEvent);
+
+            services.Decorate(integrationEventHandler, closedIdempotentHandler);
         }
     }
 }

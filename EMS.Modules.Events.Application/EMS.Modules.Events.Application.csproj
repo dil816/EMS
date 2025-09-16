@@ -2,5 +2,6 @@
   <ItemGroup>
     <ProjectReference Include="..\EMS.Common.Application\EMS.Common.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Events.Domain\EMS.Modules.Events.Domain.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Events.IntegrationEvents\EMS.Modules.Events.IntegrationEvents.csproj" />
   </ItemGroup>
 </Project>
