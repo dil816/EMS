@@ -1,16 +1,32 @@
-﻿using EMS.Modules.Users.ArchitectureTests.Abstractions;
-using MassTransit;
+﻿using EMS.Common.Application.EventBus;
+using EMS.Modules.Users.ArchitectureTests.Abstractions;
 using NetArchTest.Rules;
 
 namespace EMS.Modules.Users.ArchitectureTests.Presentation;
 public class PresentationTests
 {
     [Fact]
+    public void IntegrationEventConsumer_Should_NotBePublic()
+    {
+        Types.InAssembly(BaseTest.PresentationAssembly)
+            .That()
+            .ImplementInterface(typeof(IIntegrationEventHandler<>))
+            .Or()
+            .Inherit(typeof(IntegrationEventHandler<>))
+            .Should()
+            .NotBePublic()
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+
+    [Fact]
     public void IntegrationEventConsumer_Should_BeSealed()
     {
         Types.InAssembly(BaseTest.PresentationAssembly)
             .That()
-            .ImplementInterface(typeof(IConsumer<>))
+            .ImplementInterface(typeof(IIntegrationEventHandler<>))
+            .Or()
+            .Inherit(typeof(IntegrationEventHandler<>))
             .Should()
             .BeSealed()
             .GetResult()
@@ -22,10 +38,13 @@ public class PresentationTests
     {
         Types.InAssembly(BaseTest.PresentationAssembly)
             .That()
-            .ImplementInterface(typeof(IConsumer<>))
+            .ImplementInterface(typeof(IIntegrationEventHandler<>))
+            .Or()
+            .Inherit(typeof(IntegrationEventHandler<>))
             .Should()
-            .HaveNameEndingWith("IntegrationEventConsumer")
+            .HaveNameEndingWith("IntegrationEventHandler")
             .GetResult()
             .ShouldBeSuccessful();
     }
 }
+

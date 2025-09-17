@@ -6,7 +6,7 @@ using EMS.Modules.Users.IntegrationEvents;
 using MediatR;
 
 namespace EMS.Modules.Ticketing.Presentation.Customers;
-public sealed class UserRegisteredIntegrationEventConsumer(ISender sender)
+public sealed class UserRegisteredIntegrationEventHandler(ISender sender)
     : IntegrationEventHandler<UserRegisteredIntegrationEvent>
 {
     public override async Task Handle(

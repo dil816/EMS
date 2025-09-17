@@ -3,5 +3,6 @@
     <ProjectReference Include="..\EMS.Common.Application\EMS.Common.Application.csproj" />
     <ProjectReference Include="..\EMS.Modules.Events.PublicApi\EMS.Modules.Events.PublicApi.csproj" />
     <ProjectReference Include="..\EMS.Modules.Ticketing.Domain\EMS.Modules.Ticketing.Domain.csproj" />
+    <ProjectReference Include="..\EMS.Modules.Ticketing.IntegrationEvents\EMS.Modules.Ticketing.IntegrationEvents.csproj" />
   </ItemGroup>
 </Project>
