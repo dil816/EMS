@@ -6,7 +6,7 @@ using EMS.Modules.Ticketing.Application.Events.CreateEvent;
 using MediatR;
 
 namespace EMS.Modules.Ticketing.Presentation.Events;
-public sealed class EventPublishedIntegrationEventHandler(ISender sender)
+internal sealed class EventPublishedIntegrationEventHandler(ISender sender)
     : IntegrationEventHandler<EventPublishedIntegrationEvent>
 {
     public override async Task Handle(

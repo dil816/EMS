@@ -6,7 +6,7 @@ using EMS.Modules.Users.IntegrationEvents;
 using MediatR;
 
 namespace EMS.Modules.Attendance.Presentation.Attendees;
-public sealed class UserProfileUpdatedIntegrationEventHandler(ISender sender)
+internal sealed class UserProfileUpdatedIntegrationEventHandler(ISender sender)
     : IntegrationEventHandler<UserProfileUpdatedIntegrationEvent>
 {
     public override async Task Handle(UserProfileUpdatedIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)

@@ -6,7 +6,7 @@ using EMS.Modules.Ticketing.Application.TicketTypes.UpdateTicketTypePrice;
 using MediatR;
 
 namespace EMS.Modules.Ticketing.Presentation.TicketTypes;
-public sealed class TicketTypePriceChangedIntegrationEventHandler(ISender sender)
+internal sealed class TicketTypePriceChangedIntegrationEventHandler(ISender sender)
     : IntegrationEventHandler<TicketTypePriceChangedIntegrationEvent>
 {
     public override async Task Handle(

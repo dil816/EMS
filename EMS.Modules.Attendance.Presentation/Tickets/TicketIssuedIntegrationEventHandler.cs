@@ -6,7 +6,7 @@ using EMS.Modules.Ticketing.IntegrationEvents;
 using MediatR;
 
 namespace EMS.Modules.Attendance.Presentation.Tickets;
-public sealed class TicketIssuedIntegrationEventHandler(ISender sender)
+internal sealed class TicketIssuedIntegrationEventHandler(ISender sender)
     : IntegrationEventHandler<TicketIssuedIntegrationEvent>
 {
     public override async Task Handle(TicketIssuedIntegrationEvent integrationEvent, CancellationToken cancellationToken = default)
