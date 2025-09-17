@@ -4,6 +4,10 @@
             "IntervalInSeconds": 15,
             "BatchSize": 20
         },
+        "Inbox": {
+            "IntervalInSeconds": 15,
+            "BatchSize": 20
+        },
         "KeyCloak": {
             "AdminUrl": "http://ems.identity:8080/admin/realms/ems/",
             "TokenUrl": "http://ems.identity:8080/realms/ems/protocol/openid-connect/token",
