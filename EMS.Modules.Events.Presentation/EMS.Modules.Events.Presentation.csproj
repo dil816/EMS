@@ -1,5 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
+	  <PackageReference Include="MassTransit" Version="8.5.2" />
+	</ItemGroup>
+	<ItemGroup>
 	  <ProjectReference Include="..\EMS.Common.Presentation\EMS.Common.Presentation.csproj" />
 	  <ProjectReference Include="..\EMS.Modules.Events.Application\EMS.Modules.Events.Application.csproj" />
 	</ItemGroup>
