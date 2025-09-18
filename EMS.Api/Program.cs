@@ -80,3 +80,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.Run();
+
+//Surpass intentionally for testing
+#pragma warning disable CA1515 // Consider making public types internal
+public partial class Program;
+#pragma warning restore CA1515 // Consider making public types internal
