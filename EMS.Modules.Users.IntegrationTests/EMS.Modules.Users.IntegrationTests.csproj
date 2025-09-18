@@ -38,4 +38,8 @@
     </None>
   </ItemGroup>
 
+	<PropertyGroup>
+		<NoWarn>$(NoWarn);CA1515</NoWarn>
+	</PropertyGroup>
+
 </Project>
