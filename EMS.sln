@@ -99,6 +99,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{319D4428-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.ArchitectureTests", "EMS.Modules.Attendance.ArchitectureTests\EMS.Modules.Attendance.ArchitectureTests.csproj", "{5C21ED35-17ED-4345-BB34-50ADD45D996F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.UnitTests", "EMS.Modules.Events.UnitTests\EMS.Modules.Events.UnitTests.csproj", "{01EC53EA-8959-4139-8D60-005B0AAC80D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,6 +235,10 @@ Global
 		{5C21ED35-17ED-4345-BB34-50ADD45D996F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C21ED35-17ED-4345-BB34-50ADD45D996F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C21ED35-17ED-4345-BB34-50ADD45D996F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EC53EA-8959-4139-8D60-005B0AAC80D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EC53EA-8959-4139-8D60-005B0AAC80D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EC53EA-8959-4139-8D60-005B0AAC80D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EC53EA-8959-4139-8D60-005B0AAC80D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -280,6 +286,7 @@ Global
 		{FA875F17-C6C1-4C52-B0A4-E6B27C5529C9} = {837500D8-9355-4E4A-B4E1-8411751520EE}
 		{319D4428-D4D1-4CEB-8D90-45BE3335D0FA} = {0A778180-8BB3-4776-B564-A997F27569C6}
 		{5C21ED35-17ED-4345-BB34-50ADD45D996F} = {319D4428-D4D1-4CEB-8D90-45BE3335D0FA}
+		{01EC53EA-8959-4139-8D60-005B0AAC80D5} = {837500D8-9355-4E4A-B4E1-8411751520EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
