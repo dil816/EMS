@@ -28,8 +28,4 @@
     <ProjectReference Include="..\EMS.Modules.Users.Infrastructure\EMS.Modules.Users.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Update="SonarAnalyzer.CSharp" Version="10.15.0.120848" />
-  </ItemGroup>
-
 </Project>
