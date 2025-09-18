@@ -6,4 +6,9 @@
     <ProjectReference Include="..\EMS.Modules.Users.Presentation\EMS.Modules.Users.Presentation.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="EMS.Modules.Users.IntegrationTests" />
+		<InternalsVisibleTo Include="EMS.IntegrationTests" />
+	</ItemGroup>
+
 </Project>
