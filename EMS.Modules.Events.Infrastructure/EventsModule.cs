@@ -13,7 +13,9 @@ using EMS.Modules.Events.Infrastructure.Inbox;
 using EMS.Modules.Events.Infrastructure.Outbox;
 using EMS.Modules.Events.Infrastructure.PublicApi;
 using EMS.Modules.Events.Infrastructure.TicketTypes;
+using EMS.Modules.Events.Presentation.Events.CancelEventSaga;
 using EMS.Modules.Events.PublicApi;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -36,6 +38,13 @@ public static class EventsModule
         services.AddInfrastructure(configuration);
 
         return services;
+    }
+
+    public static Action<IRegistrationConfigurator> ConfigureConsumers(string redisConnectionString)
+    {
+        return registrationConfigurator => registrationConfigurator
+            .AddSagaStateMachine<CancelEventSaga, CancelEventState>()
+            .RedisRepository(redisConnectionString);
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
