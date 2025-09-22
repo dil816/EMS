@@ -1,7 +1,7 @@
 using Bogus;
 using EMS.Common.Domain;
 
-namespace EMS.Modules.Attendance.UnitTest.Abstractions;
+namespace EMS.Modules.Attendance.UnitTests.Abstractions;
 
 internal static class BaseTest
 {

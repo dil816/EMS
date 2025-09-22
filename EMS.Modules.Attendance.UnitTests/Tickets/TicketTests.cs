@@ -2,10 +2,10 @@
 using EMS.Modules.Attendance.Domain.Attendees;
 using EMS.Modules.Attendance.Domain.Events;
 using EMS.Modules.Attendance.Domain.Tickets;
-using EMS.Modules.Attendance.UnitTest.Abstractions;
+using EMS.Modules.Attendance.UnitTests.Abstractions;
 using FluentAssertions;
 
-namespace EMS.Modules.Attendance.UnitTest.Tickets;
+namespace EMS.Modules.Attendance.UnitTests.Tickets;
 public class TicketTests
 {
     [Fact]

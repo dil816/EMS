@@ -1,9 +1,9 @@
 ﻿using EMS.Common.Domain;
 using EMS.Modules.Attendance.Domain.Events;
-using EMS.Modules.Attendance.UnitTest.Abstractions;
+using EMS.Modules.Attendance.UnitTests.Abstractions;
 using FluentAssertions;
 
-namespace EMS.Modules.Attendance.UnitTest.Events;
+namespace EMS.Modules.Attendance.UnitTests.Events;
 public class EventTests
 {
     [Fact]
