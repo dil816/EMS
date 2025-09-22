@@ -115,6 +115,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Events.Integrat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.IntegrationTests", "EMS.Modules.Attendance.IntegrationTests\EMS.Modules.Attendance.IntegrationTests.csproj", "{AE2B4883-7254-4C4B-969F-667CF6E2A253}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.IntegrationTests", "EMS.IntegrationTests\EMS.IntegrationTests.csproj", "{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -281,6 +283,10 @@ Global
 		{AE2B4883-7254-4C4B-969F-667CF6E2A253}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2B4883-7254-4C4B-969F-667CF6E2A253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2B4883-7254-4C4B-969F-667CF6E2A253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -336,6 +342,7 @@ Global
 		{FFB254C8-CB89-42DD-84DB-138E75772255} = {33D963B9-E22C-417D-A59E-57905139EB79}
 		{FEC70B73-CB3A-4AC7-A7EF-E98E0D5E1EC4} = {837500D8-9355-4E4A-B4E1-8411751520EE}
 		{AE2B4883-7254-4C4B-969F-667CF6E2A253} = {319D4428-D4D1-4CEB-8D90-45BE3335D0FA}
+		{753635E6-EBBA-4CA4-9A42-20D6DBBE8F18} = {1954848B-2978-46C1-AAC7-CC98B549C1E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
