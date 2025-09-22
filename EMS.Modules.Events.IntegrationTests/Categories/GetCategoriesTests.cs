@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bogus;
+﻿using Bogus;
 using EMS.Common.Domain;
 using EMS.Modules.Events.Application.Categories.GetCategories;
 using EMS.Modules.Events.Application.Categories.GetCategory;

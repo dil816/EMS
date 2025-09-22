@@ -1,5 +1,4 @@
-﻿using Bogus;
-using EMS.Common.Domain;
+﻿using EMS.Common.Domain;
 using EMS.Modules.Attendance.Domain.Events;
 using EMS.Modules.Attendance.UnitTest.Abstractions;
 using FluentAssertions;
