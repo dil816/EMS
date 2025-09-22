@@ -105,6 +105,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Users.Integrati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Ticketing.UnitTests", "EMS.Modules.Ticketing.UnitTests\EMS.Modules.Ticketing.UnitTests.csproj", "{9E63EE12-6BD3-4353-A14F-D13B46E1AA73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.UnitTest", "EMS.Modules.Attendance.UnitTest\EMS.Modules.Attendance.UnitTest.csproj", "{AB0D2610-C502-40B4-96BE-197F0097A8A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -251,6 +253,10 @@ Global
 		{9E63EE12-6BD3-4353-A14F-D13B46E1AA73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E63EE12-6BD3-4353-A14F-D13B46E1AA73}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E63EE12-6BD3-4353-A14F-D13B46E1AA73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB0D2610-C502-40B4-96BE-197F0097A8A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0D2610-C502-40B4-96BE-197F0097A8A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0D2610-C502-40B4-96BE-197F0097A8A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0D2610-C502-40B4-96BE-197F0097A8A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -301,6 +307,7 @@ Global
 		{01EC53EA-8959-4139-8D60-005B0AAC80D5} = {837500D8-9355-4E4A-B4E1-8411751520EE}
 		{97E2DA20-7D43-4045-BF38-75B4ADF70C35} = {CEC1D596-1CF6-4514-B053-6D2A85F7EB0B}
 		{9E63EE12-6BD3-4353-A14F-D13B46E1AA73} = {33D963B9-E22C-417D-A59E-57905139EB79}
+		{AB0D2610-C502-40B4-96BE-197F0097A8A0} = {319D4428-D4D1-4CEB-8D90-45BE3335D0FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1EE9B65A-FB28-4304-BDBC-3AB6525368DE}
