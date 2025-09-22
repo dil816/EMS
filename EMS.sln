@@ -105,7 +105,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Users.Integrati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Ticketing.UnitTests", "EMS.Modules.Ticketing.UnitTests\EMS.Modules.Ticketing.UnitTests.csproj", "{9E63EE12-6BD3-4353-A14F-D13B46E1AA73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.UnitTests", "EMS.Modules.Attendance.UnitTest\EMS.Modules.Attendance.UnitTests.csproj", "{AB0D2610-C502-40B4-96BE-197F0097A8A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMS.Modules.Attendance.UnitTests", "EMS.Modules.Attendance.UnitTests\EMS.Modules.Attendance.UnitTests.csproj", "{AB0D2610-C502-40B4-96BE-197F0097A8A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
