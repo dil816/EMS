@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using EMS.Common.Domain;
 using EMS.IntegrationTests.Abstractions;
+using EMS.Modules.Attendance.Application.Attendees.GetAttendee;
 using EMS.Modules.Ticketing.Application.Customers.GetCustomer;
 using EMS.Modules.Users.Application.Users.RegisterUser;
 using FluentAssertions;
