@@ -1,6 +1,7 @@
 using Bogus;
 using EMS.Modules.Events.Infrastructure.Database;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EMS.Modules.Events.IntegrationTests.Abstractions;
