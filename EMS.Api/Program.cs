@@ -1,5 +1,6 @@
 using EMS.Api.Extensions;
 using EMS.Api.Middleware;
+using EMS.Api.OpenTelemetry;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
 using EMS.Common.Presentation.EndPoints;
@@ -34,6 +35,7 @@ string databaseConnectionString = builder.Configuration.GetConnectionString("Dat
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
 builder.Services.AddInfrastructure(
+    DiagnosticsConfig.ServiceName,
     [
         EventsModule.ConfigureConsumers(redisConnectionString),
         TicketingModule.ConfigureConsumers,
@@ -71,6 +73,8 @@ app.MapHealthChecks("health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+app.UseLogContextTraceLogging();
+
 app.UseSerilogRequestLogging();
 
 app.UseExceptionHandler();
@@ -81,7 +85,7 @@ app.UseAuthorization();
 
 app.Run();
 
-//Surpass intentionally for testing
+//Surpass Temporally intentionally for testing
 #pragma warning disable CA1515 // Consider making public types internal
 public partial class Program;
 #pragma warning restore CA1515 // Consider making public types internal
