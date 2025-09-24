@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - module-communication
+      - microservices-extract
 
 env:
   DOTNET_VERSION: "8.x"
