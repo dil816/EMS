@@ -39,6 +39,7 @@ builder.Services.AddInfrastructure(
     [
         EventsModule.ConfigureConsumers(redisConnectionString),
         AttendanceModule.ConfigureConsumers,
+        UsersModule.ConfigureConsumer
     ],
     rabbitMqSettings,
     databaseConnectionString,

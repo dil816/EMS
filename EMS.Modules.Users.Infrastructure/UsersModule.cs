@@ -12,6 +12,8 @@ using EMS.Modules.Users.Infrastructure.Identity;
 using EMS.Modules.Users.Infrastructure.Inbox;
 using EMS.Modules.Users.Infrastructure.Outbox;
 using EMS.Modules.Users.Infrastructure.Users;
+using EMS.Modules.Users.Presentation.Users;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +37,12 @@ public static class UsersModule
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
 
         return services;
+    }
+
+    public static void ConfigureConsumer(IRegistrationConfigurator registrationConfigurator, string instanceId)
+    {
+        registrationConfigurator.AddConsumer<GetUserPermissionsRequestConsumer>()
+            .Endpoint(c => c.InstanceId = instanceId);
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)

@@ -1,4 +1,5 @@
-﻿using EMS.Common.Application.EventBus;
+﻿using EMS.Common.Application.Authorization;
+using EMS.Common.Application.EventBus;
 using EMS.Common.Application.Messaging;
 using EMS.Common.Infrastructure.Outbox;
 using EMS.Common.Presentation.EndPoints;
@@ -13,6 +14,7 @@ using EMS.Modules.Ticketing.Domain.Orders;
 using EMS.Modules.Ticketing.Domain.Payments;
 using EMS.Modules.Ticketing.Domain.Tickets;
 using EMS.Modules.Ticketing.Infrastructure.Authentication;
+using EMS.Modules.Ticketing.Infrastructure.Authorization;
 using EMS.Modules.Ticketing.Infrastructure.Customers;
 using EMS.Modules.Ticketing.Infrastructure.Database;
 using EMS.Modules.Ticketing.Infrastructure.Events;
@@ -97,6 +99,9 @@ public static class TicketingModule
         services.Configure<InboxOptions>(configuration.GetSection("Ticketing:Inbox"));
 
         services.ConfigureOptions<ConfigureProcessInboxJob>();
+
+        // new added due to separate microservice module extract
+        services.AddScoped<IPermissionService, PermissionService>();
     }
 
     private static void AddDomainEventHandlers(this IServiceCollection services)
