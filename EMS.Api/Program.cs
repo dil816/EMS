@@ -3,6 +3,7 @@ using EMS.Api.Middleware;
 using EMS.Api.OpenTelemetry;
 using EMS.Common.Application;
 using EMS.Common.Infrastructure;
+using EMS.Common.Infrastructure.EventBus;
 using EMS.Common.Presentation.EndPoints;
 using EMS.Modules.Attendance.Infrastructure;
 using EMS.Modules.Events.Infrastructure;
@@ -33,6 +34,7 @@ builder.Services.AddApplication([
 
 string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
+var rabbitMqSettings = new RabbitMqSettings(builder.Configuration.GetConnectionString("Queue")!);
 
 builder.Services.AddInfrastructure(
     DiagnosticsConfig.ServiceName,
@@ -41,6 +43,7 @@ builder.Services.AddInfrastructure(
         TicketingModule.ConfigureConsumers,
         AttendanceModule.ConfigureConsumers,
     ],
+    rabbitMqSettings,
     databaseConnectionString,
     redisConnectionString);
 
@@ -49,6 +52,7 @@ builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing", "a
 builder.Services.AddHealthChecks()
     .AddNpgSql(databaseConnectionString)
     .AddRedis(redisConnectionString)
+    .AddRabbitMQ(rabbitConnectionString: rabbitMqSettings.Host) //old version added 8.0.2 due to connection breaking changes version in 9.0.0 
     .AddUrlGroup(new Uri(builder.Configuration.GetValue<string>("KeyCloak:HealthUrl")!), HttpMethod.Get, "keycloak");
 
 builder.Services.AddEventsModule(builder.Configuration);
