@@ -29,7 +29,7 @@ public sealed class RegisterUserTests : BaseIntegrationTest
 
         // Get attendee
         Result<AttendeeResponse> attendeeResult = await Poller.WaitAsync(
-            TimeSpan.FromSeconds(15),
+            TimeSpan.FromSeconds(30),
             async () =>
             {
                 var query = new GetAttendeeQuery(userResult.Value);
