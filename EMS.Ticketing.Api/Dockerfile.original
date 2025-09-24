@@ -14,17 +14,6 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Directory.Build.props", "."]
 COPY ["EMS.Ticketing.Api/EMS.Ticketing.Api.csproj", "EMS.Ticketing.Api/"]
-COPY ["EMS.Modules.Ticketing.Infrastructure/EMS.Modules.Ticketing.Infrastructure.csproj", "EMS.Modules.Ticketing.Infrastructure/"]
-COPY ["EMS.Common.Infrastructure/EMS.Common.Infrastructure.csproj", "EMS.Common.Infrastructure/"]
-COPY ["EMS.Common.Application/EMS.Common.Application.csproj", "EMS.Common.Application/"]
-COPY ["EMS.Common.Domain/EMS.Common.Domain.csproj", "EMS.Common.Domain/"]
-COPY ["EMS.Modules.Ticketing.Application/EMS.Modules.Ticketing.Application.csproj", "EMS.Modules.Ticketing.Application/"]
-COPY ["EMS.Modules.Ticketing.Domain/EMS.Modules.Ticketing.Domain.csproj", "EMS.Modules.Ticketing.Domain/"]
-COPY ["EMS.Modules.Ticketing.IntegrationEvents/EMS.Modules.Ticketing.IntegrationEvents.csproj", "EMS.Modules.Ticketing.IntegrationEvents/"]
-COPY ["EMS.Modules.Ticketing.Presentation/EMS.Modules.Ticketing.Presentation.csproj", "EMS.Modules.Ticketing.Presentation/"]
-COPY ["EMS.Common.Presentation/EMS.Common.Presentation.csproj", "EMS.Common.Presentation/"]
-COPY ["EMS.Modules.Events.IntegrationEvents/EMS.Modules.Events.IntegrationEvents.csproj", "EMS.Modules.Events.IntegrationEvents/"]
-COPY ["EMS.Modules.Users.IntegrationEvents/EMS.Modules.Users.IntegrationEvents.csproj", "EMS.Modules.Users.IntegrationEvents/"]
 RUN dotnet restore "./EMS.Ticketing.Api/EMS.Ticketing.Api.csproj"
 COPY . .
 WORKDIR "/src/EMS.Ticketing.Api"
