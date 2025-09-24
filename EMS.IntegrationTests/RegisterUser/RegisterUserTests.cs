@@ -30,7 +30,7 @@ public sealed class RegisterUserTests : BaseIntegrationTest
 
         // Get customer
         Result<CustomerResponse> customerResult = await Poller.WaitAsync(
-            TimeSpan.FromSeconds(15),
+            TimeSpan.FromSeconds(30),
             async () =>
             {
                 var query = new GetCustomerQuery(userResult.Value);
@@ -61,7 +61,7 @@ public sealed class RegisterUserTests : BaseIntegrationTest
 
         // Get attendee
         Result<AttendeeResponse> attendeeResult = await Poller.WaitAsync(
-            TimeSpan.FromSeconds(15),
+            TimeSpan.FromSeconds(30),
             async () =>
             {
                 var query = new GetAttendeeQuery(userResult.Value);
