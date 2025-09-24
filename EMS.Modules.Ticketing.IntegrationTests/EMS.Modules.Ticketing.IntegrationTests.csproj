@@ -23,9 +23,9 @@
 	  </PackageReference>
   </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\EMS.Api\EMS.Api.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EMS.Ticketing.Api\EMS.Ticketing.Api.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
