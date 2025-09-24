@@ -30,6 +30,7 @@ COPY ["EMS.Modules.Events.Infrastructure/EMS.Modules.Events.Infrastructure.cspro
 COPY ["EMS.Modules.Events.Application/EMS.Modules.Events.Application.csproj", "EMS.Modules.Events.Application/"]
 COPY ["EMS.Modules.Events.Domain/EMS.Modules.Events.Domain.csproj", "EMS.Modules.Events.Domain/"]
 COPY ["EMS.Modules.Events.Presentation/EMS.Modules.Events.Presentation.csproj", "EMS.Modules.Events.Presentation/"]
+COPY ["EMS.Modules.Events.PublicApi/EMS.Modules.Events.PublicApi.csproj", "EMS.Modules.Events.PublicApi/"]
 COPY ["EMS.Modules.Users.Infrastructure/EMS.Modules.Users.Infrastructure.csproj", "EMS.Modules.Users.Infrastructure/"]
 COPY ["EMS.Modules.Users.Application/EMS.Modules.Users.Application.csproj", "EMS.Modules.Users.Application/"]
 COPY ["EMS.Modules.Users.Domain/EMS.Modules.Users.Domain.csproj", "EMS.Modules.Users.Domain/"]
