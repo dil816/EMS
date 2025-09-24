@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "ems.api": "StartDebugging",
-        "ems.gateway": "StartDebugging"
+        "ems.gateway": "StartDebugging",
+        "ems.ticketing.api": "StartDebugging"
       }
     }
   }

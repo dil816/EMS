@@ -3,6 +3,7 @@
   <PropertyGroup>
     <UserSecretsId>42b2c93a-2241-4705-ac5c-42c7fc2bf7b7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
