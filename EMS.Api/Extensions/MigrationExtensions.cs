@@ -1,6 +1,5 @@
 ﻿using EMS.Modules.Attendance.Infrastructure.Database;
 using EMS.Modules.Events.Infrastructure.Database;
-using EMS.Modules.Ticketing.Infrastructure.Database;
 using EMS.Modules.Users.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +13,6 @@ internal static class MigrationExtensions
 
         ApplyMigration<EventsDbContext>(scope);
         ApplyMigration<UsersDbContext>(scope);
-        ApplyMigration<TicketingDbContext>(scope);
         ApplyMigration<AttendanceDbContext>(scope);
     }
 
