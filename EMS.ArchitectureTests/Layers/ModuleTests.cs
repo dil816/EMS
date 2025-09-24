@@ -4,8 +4,6 @@ using EMS.Modules.Attendance.Domain.Attendees;
 using EMS.Modules.Attendance.Infrastructure;
 using EMS.Modules.Events.Domain.Events;
 using EMS.Modules.Events.Infrastructure;
-using EMS.Modules.Ticketing.Domain.Orders;
-using EMS.Modules.Ticketing.Infrastructure;
 using EMS.Modules.Users.Domain.Users;
 using EMS.Modules.Users.Infrastructure;
 using NetArchTest.Rules;
@@ -73,34 +71,6 @@ public class ModuleTests
         ];
 
         Types.InAssemblies(eventsAssemblies)
-            .That()
-            .DoNotHaveDependencyOnAny(integrationEventsModules)
-            .Should()
-            .NotHaveDependencyOnAny(otherModules)
-            .GetResult()
-            .ShouldBeSuccessful();
-    }
-
-    [Fact]
-    public void TicketingModule_ShouldNotHaveDependencyOn_AnyOtherModule()
-    {
-        string[] otherModules = [EventsNamespace, UsersNamespace, AttendanceNamespace];
-        string[] integrationEventsModules =
-        [
-            EventsIntegrationEventsNamespace,
-            UsersIntegrationEventsNamespace,
-            AttendanceIntegrationEventsNamespace
-        ];
-
-        List<Assembly> ticketingAssemblies =
-        [
-            typeof(Order).Assembly,
-            Modules.Ticketing.Application.AssemblyReference.Assembly,
-            Modules.Ticketing.Presentation.AssemblyReference.Assembly,
-            typeof(TicketingModule).Assembly
-        ];
-
-        Types.InAssemblies(ticketingAssemblies)
             .That()
             .DoNotHaveDependencyOnAny(integrationEventsModules)
             .Should()
